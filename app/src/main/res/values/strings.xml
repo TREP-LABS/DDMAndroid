@@ -2,4 +2,12 @@
     <string name="app_name">BaseProj</string>
     <string name="default_loading_message">Loading, Please wait . . .</string>
     <string name="ok">OK</string>
+
+    <string name="demo_tab_title_one">Easy expression</string>
+    <string name="demo_tab_title_two">Quick result</string>
+    <string name="demo_tab_title_three">Result Accuracy</string>
+    <string name="demo_tab_description_one">Suggestive symptoms tags to help you better express how you feel.</string>
+    <string name="demo_tab_description_two">Know the cause of your distress in just 3 minutes</string>
+    <string name="demo_tab_description_three">Know how accurate the diagnose result is and alternative possible case</string>
+
 </resources>
