@@ -5,21 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.treplabs.ddm.base.BaseFragment
-import com.treplabs.ddm.databinding.FragmentLoginBinding
-import timber.log.Timber
-import javax.inject.Inject
+import com.treplabs.ddm.databinding.FragmentSigninBinding
 
-class LoginFragment : BaseFragment() {
+class SignInFragment : BaseFragment() {
 
-    lateinit var binding: FragmentLoginBinding
-
+    lateinit var binding: FragmentSigninBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLoginBinding.inflate(inflater)
+        binding = FragmentSigninBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }

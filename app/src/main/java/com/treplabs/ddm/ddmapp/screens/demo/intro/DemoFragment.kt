@@ -15,6 +15,7 @@ import com.treplabs.ddm.databinding.FragmentDemoBinding
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_demo.*
 import com.treplabs.ddm.R
+import com.treplabs.ddm.ddmapp.screens.demo.intro.DemoPagerFragment
 
 
 class DemoFragment : BaseFragment() {

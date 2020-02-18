@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseViewModel
 import com.treplabs.ddm.ddmapp.screens.history.HistoryViewModel
-import com.treplabs.ddm.ddmapp.screens.login.LoginViewModel
+import com.treplabs.ddm.ddmapp.screens.login.SignInViewModel
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,8 +19,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(LoginViewModel::class)
-    abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
+    @ViewModelKey(SignInViewModel::class)
+    abstract fun bindLoginViewModel(viewModel: SignInViewModel): ViewModel
 
     @Binds
     @IntoMap

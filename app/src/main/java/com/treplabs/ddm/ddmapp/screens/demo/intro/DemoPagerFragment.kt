@@ -1,4 +1,5 @@
-
+package com.treplabs.ddm.ddmapp.screens.demo.intro
+import PagerDataModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

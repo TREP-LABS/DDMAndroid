@@ -44,7 +44,6 @@
             app:layout_constraintTop_toBottomOf="@+id/illustration_image"
             tools:text="@string/demo_tab_title_one" />
 
-
         <TextView
             android:id="@+id/description_text_view"
             android:layout_width="0dp"
@@ -61,7 +60,5 @@
             tools:text="@string/demo_tab_description_one" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </layout>

@@ -69,7 +69,7 @@ object Config {
         }
 
         object Misc {
-            const val materialDesign = "com.google.android.material:material:1.1.0-alpha08"
+            const val materialDesign = "com.google.android.material:material:1.1.0"
             const val timber = "com.jakewharton.timber:timber:4.7.1"
             const val materialDialogs = "com.afollestad.material-dialogs:core:3.0.0-rc1"
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"

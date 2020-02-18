@@ -1,24 +1,41 @@
 <resources>
-    <style name="AppTheme" parent="AppThemeParent" />
+    <style name="AppTheme" parent="AppThemeParent" >
+        <item name="android:statusBarColor">#0D050000</item>
+    </style>
 
     <style name="AppTheme.HorizontalButtonAppearance" parent="Widget.MaterialComponents.Button.Icon">
         <item name="android:fontFamily">@font/lato_bold</item>
         <item name="fontFamily">@font/lato_bold</item>
         <item name="cornerRadius">8dp</item>
         <item name="android:padding">16dp</item>
-        <item name="android:layout_marginStart">20dp</item>
-        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="backgroundTint">@color/colorAccent</item>
     </style>
 
-
-    <style name="AppTheme.TextAppearance.PageHeader" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">@font/lato_black</item>
-        <item name="fontFamily">@font/lato_black</item>
+    <style name="AppTheme.OutlineButtonAppearance" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="fontFamily">@font/lato_bold</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
+    <style name="AppTheme.TextInputLayouts" parent="@style/Widget.Design.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.PageHeader" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="fontFamily">@font/lato_bold</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
 
 </resources>

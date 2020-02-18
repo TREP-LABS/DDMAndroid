@@ -17,9 +17,9 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_login"
+        tools:layout="@layout/fragment_signin"
         android:id="@+id/loginFragment"
-        android:name="com.treplabs.ddm.ddmapp.screens.login.LoginFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.login.SignInFragment"
         android:label="LoginFragment" />
     <fragment
         tools:layout="@layout/fragment_history"
