@@ -60,7 +60,6 @@ class DemoFragment : BaseFragment() {
         }
     }
 
-
     private fun setUpToolbar() = mainActivity.run {
         setUpToolBar("", true)
         invalidateToolbarElevation(0)

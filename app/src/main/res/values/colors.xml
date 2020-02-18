@@ -9,6 +9,8 @@
     <color name="textColorPrimary">#202125</color>
     <color name="textColorSecondary">#8F8F91</color>
 
+    <color name="lightColorAccent">#B5C8FF</color>
+
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@android:color/transparent</color>
 
 </resources>
