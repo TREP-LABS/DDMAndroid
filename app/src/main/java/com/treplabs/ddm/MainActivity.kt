@@ -8,18 +8,16 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.snackbar.Snackbar
 import com.treplabs.ddm.base.BaseFragment
 import com.treplabs.ddm.base.LoadingCallback
 import com.treplabs.ddm.extensions.*
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_indicator.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
 
-/**
- * Created by Rasheed Sulayman.
- */
 class MainActivity : AppCompatActivity(), LoadingCallback {
 
     private lateinit var navController: NavController
@@ -38,16 +36,24 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
+        bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            /*bottomNavigationView.visibility =
+                if (destination.id == R.id.loginFragment) View.GONE else View.VISIBLE*/
+        }
     }
 
     fun setUpToolBar(toolbarTitle: String, isRootPage: Boolean = false) {
         supportActionBar!!.run {
             setDisplayHomeAsUpEnabled(!isRootPage)
-            setHomeAsUpIndicator(if (!isRootPage) R.drawable.ic_arrow_white_24dp else 0)
+            setHomeAsUpIndicator(if (!isRootPage) R.drawable.ic_arrow_back_24dp else 0)
             toolbarTitleTextView.text = toolbarTitle
-            val leftRightPaddingRes = if (isRootPage) R.dimen.toolbar_left_right_padding_root else
-                R.dimen.toolbar_left_right_padding
-            toolbarTitleTextView.setViewPadding(R.dimen.toolbar_top_bottom_padding, leftRightPaddingRes)
+            val leftRightPaddingRes =
+                if (isRootPage) R.dimen.toolbar_left_right_padding_root else R.dimen.toolbar_left_right_padding
+            toolbarTitleTextView.setViewPadding(
+                R.dimen.toolbar_top_bottom_padding,
+                leftRightPaddingRes
+            )
         }
     }
 
@@ -99,10 +105,6 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
     override fun showError(message: String) {
         hideKeyBoard()
         dismissLoading()
-        showMessageDialog(message)
-    }
-
-    fun showMessageDialog(message: String) {
         MaterialDialog(this).show {
             message(text = message)
             positiveButton(R.string.ok)
