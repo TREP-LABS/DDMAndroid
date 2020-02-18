@@ -39,7 +39,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         app:itemIconTint="@drawable/bottom_navigation_colors"
         app:itemTextColor="@drawable/bottom_navigation_colors"
-        app:menu="@menu/drawer_actions"
+        app:menu="@menu/bottom_nav_actions"
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

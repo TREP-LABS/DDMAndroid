@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
+import com.treplabs.ddm.databinding.FragmentProfileBinding
 
 import javax.inject.Inject
 
@@ -16,16 +17,16 @@ class ProfileFragment : BaseViewModelFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: AccountViewModel
+    private lateinit var viewModel: ProfileViewModel
 
-    lateinit var binding: FragmentAccountBinding
+    lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAccountBinding.inflate(inflater)
+        binding = FragmentProfileBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -34,7 +35,7 @@ class ProfileFragment : BaseViewModelFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar()
         daggerAppComponent.inject(this)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AccountViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
         binding.viewModel = viewModel
     }
 

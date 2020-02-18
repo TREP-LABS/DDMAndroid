@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
+import com.treplabs.ddm.databinding.FragmentDiagnoseBinding
 import javax.inject.Inject
 
 class DiagnoseFragment : BaseViewModelFragment() {
@@ -15,16 +16,16 @@ class DiagnoseFragment : BaseViewModelFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: AccountViewModel
+    private lateinit var viewModel: DiagnoseViewModel
 
-    lateinit var binding: FragmentAccountBinding
+    lateinit var binding: FragmentDiagnoseBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAccountBinding.inflate(inflater)
+        binding = FragmentDiagnoseBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -33,7 +34,7 @@ class DiagnoseFragment : BaseViewModelFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar()
         daggerAppComponent.inject(this)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AccountViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DiagnoseViewModel::class.java)
         binding.viewModel = viewModel
     }
 

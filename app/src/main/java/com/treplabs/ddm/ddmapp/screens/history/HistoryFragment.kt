@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
+import com.treplabs.ddm.databinding.FragmentHistoryBinding
 import javax.inject.Inject
 
 class HistoryFragment : BaseViewModelFragment() {
@@ -15,16 +16,16 @@ class HistoryFragment : BaseViewModelFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: AccountViewModel
+    private lateinit var viewModel: HistoryViewModel
 
-    lateinit var binding: FragmentAccountBinding
+    lateinit var binding: FragmentHistoryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAccountBinding.inflate(inflater)
+        binding = FragmentHistoryBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -33,7 +34,7 @@ class HistoryFragment : BaseViewModelFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar()
         daggerAppComponent.inject(this)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AccountViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(HistoryViewModel::class.java)
         binding.viewModel = viewModel
     }
 

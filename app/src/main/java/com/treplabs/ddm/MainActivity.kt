@@ -38,8 +38,9 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            /*bottomNavigationView.visibility =
-                if (destination.id == R.id.loginFragment) View.GONE else View.VISIBLE*/
+            when (destination.id) {
+                R.id.loginFragment -> bottomNavigationView.hide()
+            }
         }
     }
 
@@ -125,6 +126,14 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
             if (body != null) message(text = body)
             if (negativeRes != null) negativeButton(negativeRes) { negativeAction?.invoke() }
             positiveButton(positiveRes) { positiveAction?.invoke() }
+            cancelOnTouchOutside(false)
+        }
+    }
+
+    fun showMessageDialog(message: String) {
+        MaterialDialog(this).show {
+            message(text = message)
+            positiveButton(R.string.ok)
             cancelOnTouchOutside(false)
         }
     }
