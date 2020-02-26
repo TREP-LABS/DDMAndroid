@@ -1,4 +1,4 @@
-package com.treplabs.ddm.ddmapp.screens.demo.intro
+package com.treplabs.ddm.ddmapp.screens.demo
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater

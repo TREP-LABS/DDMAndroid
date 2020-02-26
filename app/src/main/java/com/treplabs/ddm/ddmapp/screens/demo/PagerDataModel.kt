@@ -1,4 +1,4 @@
-package com.treplabs.ddm.ddmapp.screens.demo.intro
+package com.treplabs.ddm.ddmapp.screens.demo
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes

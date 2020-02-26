@@ -1,11 +1,10 @@
-package com.treplabs.ddm.ddmapp.screens.demo.intro
+package com.treplabs.ddm.ddmapp.screens.demo
 
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -17,9 +16,21 @@ import kotlinx.android.synthetic.main.fragment_demo.*
 class DemoFragment : BaseFragment() {
 
     private val dataModels = listOf(
-        PagerDataModel(R.string.demo_tab_title_one, R.string.demo_tab_description_one, R.drawable.user_icon_png),
-        PagerDataModel(R.string.demo_tab_title_two, R.string.demo_tab_description_two, R.drawable.user_icon_png),
-        PagerDataModel(R.string.demo_tab_title_three, R.string.demo_tab_description_three, R.drawable.user_icon_png)
+        PagerDataModel(
+            R.string.demo_tab_title_one,
+            R.string.demo_tab_description_one,
+            R.drawable.user_icon_png
+        ),
+        PagerDataModel(
+            R.string.demo_tab_title_two,
+            R.string.demo_tab_description_two,
+            R.drawable.user_icon_png
+        ),
+        PagerDataModel(
+            R.string.demo_tab_title_three,
+            R.string.demo_tab_description_three,
+            R.drawable.user_icon_png
+        )
     )
     private lateinit var binding: FragmentDemoBinding
 
@@ -64,7 +75,10 @@ class DemoFragment : BaseFragment() {
 
         override fun getItemCount() = dataModels.size
 
-        override fun createFragment(position: Int): Fragment = DemoPagerFragment.newInstance(dataModels[position])
+        override fun createFragment(position: Int): Fragment =
+            DemoPagerFragment.newInstance(
+                dataModels[position]
+            )
     }
 }
 

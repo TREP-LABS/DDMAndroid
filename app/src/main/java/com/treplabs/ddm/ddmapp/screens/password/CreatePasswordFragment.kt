@@ -1,23 +1,23 @@
-package com.treplabs.ddm.ddmapp.screens.demo.intro
+package com.treplabs.ddm.ddmapp.screens.password
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-
 import com.treplabs.ddm.base.BaseFragment
-import com.treplabs.ddm.databinding.FragmentWelcomeBinding
+import com.treplabs.ddm.databinding.FragmentSigninBinding
+import com.treplabs.ddm.databinding.FragmentSignupBinding
 
-class WelcomeFragment : BaseFragment() {
+class CreatePasswordFragment : BaseFragment() {
 
-    lateinit var binding: FragmentWelcomeBinding
+    lateinit var binding: FragmentSignupBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWelcomeBinding.inflate(inflater)
+        binding = FragmentSignupBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -25,13 +25,7 @@ class WelcomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar()
-
-        binding.getStartedButton.setOnClickListener {
-        }
-
-
-        binding.signInButton.setOnClickListener {
-        }
+        daggerAppComponent.inject(this)
     }
 
     private fun setUpToolbar() = mainActivity.run {
