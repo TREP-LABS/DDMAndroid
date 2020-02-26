@@ -1,20 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="viewModel"
-            type="com.treplabs.ddm.ddmapp.screens.profile.ProfileViewModel" />
+            type="com.treplabs.ddm.ddmapp.screens.otp.OTPFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="?colorPrimary">
 
+        <TextView
+            android:id="@+id/textView"
+            style="@style/AppTheme.TextAppearance.PageHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:text="OTP Verification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.chaos.view.PinView
+            android:id="@+id/firstPinView"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="30dp"
+            android:cursorVisible="true"
+            android:hint="OTP"
+            android:inputType="text"
+            android:itemBackground="@mipmap/ic_launcher"
+            android:padding="4dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cursorColor="?colorAccent"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="true"
+            app:itemCount="6"
+            app:itemHeight="48dp"
+            app:itemRadius="4dp"
+            app:itemSpacing="0dp"
+            app:itemWidth="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:lineColor="?android:textColor"
+            app:lineWidth="2dp"
+            app:viewType="rectangle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/proceed_button"
+            style="@style/AppTheme.HorizontalButtonAppearance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Proceed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstPinView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center"
+            android:text="An otp has been sent to your phone number, Please enter it in the form below"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="Didn’t get the OTP?"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/resend_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/proceed_button"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/resend_button"
+            style="@style/AppTheme.TextAppearance.HyperLinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="16dp"
+            android:text="Resend"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </layout>

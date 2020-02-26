@@ -74,6 +74,7 @@ object Config {
             const val materialDialogs = "com.afollestad.material-dialogs:core:3.0.0-rc1"
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
+            const val pinView = "com.chaos.view:pinview:1.4.3"
         }
     }
 

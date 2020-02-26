@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 
 import com.treplabs.ddm.base.BaseFragment
+import com.treplabs.ddm.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : BaseFragment() {
 
@@ -26,10 +27,10 @@ class WelcomeFragment : BaseFragment() {
         setUpToolbar()
 
         binding.getStartedButton.setOnClickListener {
-            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignUpFragment())
         }
+
+
         binding.signInButton.setOnClickListener {
-            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignInFragment(true))
         }
     }
 

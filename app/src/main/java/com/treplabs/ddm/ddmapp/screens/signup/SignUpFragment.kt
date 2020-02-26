@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.treplabs.ddm.base.BaseFragment
 import com.treplabs.ddm.databinding.FragmentSigninBinding
+import com.treplabs.ddm.databinding.FragmentSignupBinding
 
 class SignUpFragment : BaseFragment() {
 
-    lateinit var binding: FragmentSigninBinding
+    lateinit var binding: FragmentSignupBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSigninBinding.inflate(inflater)
+        binding = FragmentSignupBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }

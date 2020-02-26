@@ -1,7 +1,6 @@
 import com.android.build.gradle.api.ApplicationVariant
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import org.jetbrains.kotlin.konan.properties.Properties
-import com.android.build.gradle.api.BaseVariantOutput
 
 plugins {
     id("com.android.application")
@@ -52,11 +51,11 @@ android {
 
     buildTypes {
         getByName("release") {
-            /*isMinifyEnabled = true
+            isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            )*/
+            )
             versionNameSuffix = "-release"
             signingConfig = signingConfigs.getByName("config")
         }
@@ -70,7 +69,7 @@ android {
 
     productFlavors {
         create("production") {
-            buildConfigField("String", "API_BASE_URL", "\"API-creds\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://API-creds\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API-creds\"")
             buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API-creds\"")
             buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API-creds\"")
@@ -78,7 +77,7 @@ android {
             versionNameSuffix = "-production"
         }
         create("staging") {
-            buildConfigField("String", "API_BASE_URL", "\"API\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://API\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API\"")
             buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API\"")
             buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API\"")
@@ -141,6 +140,7 @@ dependencies {
     implementation(Config.Libs.Misc.timber)
     implementation(Config.Libs.Misc.countryCodePicker)
     implementation(Config.Libs.Misc.googlePlayServices)
+    implementation(Config.Libs.Misc.pinView)
 }
 
 apply(from = "../spotless.gradle")

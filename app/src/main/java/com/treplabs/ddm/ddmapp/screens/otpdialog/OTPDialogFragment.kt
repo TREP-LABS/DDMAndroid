@@ -1,21 +1,17 @@
-package com.treplabs.ddm.ddmapp.screens.otp
+package com.treplabs.ddm.ddmapp.screens.otpdialog
 
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
-import com.treplabs.ddm.R
-import com.treplabs.ddm.base.BaseFragment
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelDialogFragment
 import com.treplabs.ddm.databinding.FragmentSigninBinding
-import com.treplabs.ddm.ddmapp.screens.profile.ProfileViewModel
 import javax.inject.Inject
 
 class OTPDialogFragment : BaseViewModelDialogFragment() {

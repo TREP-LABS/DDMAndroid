@@ -1,6 +1,6 @@
 package com.treplabs.ddm.ddmapp.screens.demo.intro
-import PagerDataModel
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +11,8 @@ class DemoPagerFragment : BaseFragment() {
 
     companion object {
         private const val PAGER_MODEL_KEY = "pager_model"
-        fun newInstance(pagerDataModel: PagerDataModel): DemoPagerFragment = DemoPagerFragment().also {
-            it.arguments = Bundle().apply { putParcelable(PAGER_MODEL_KEY, pagerDataModel) }
+        fun newInstance(pagerDataDataModel: PagerDataModel): DemoPagerFragment = DemoPagerFragment().also {
+            it.arguments = Bundle().apply { putParcelable(PAGER_MODEL_KEY, pagerDataDataModel as Parcelable) }
         }
     }
 
