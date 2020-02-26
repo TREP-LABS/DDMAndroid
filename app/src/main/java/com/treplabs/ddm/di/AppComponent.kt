@@ -5,6 +5,7 @@ import com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseFragment
 import com.treplabs.ddm.ddmapp.screens.history.HistoryFragment
 import com.treplabs.ddm.ddmapp.screens.login.SignInFragment
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileFragment
+import com.treplabs.ddm.ddmapp.screens.signup.SignUpFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -21,6 +22,8 @@ interface AppComponent {
     fun inject(target: HistoryFragment)
     fun inject(target: ProfileFragment)
     fun inject(target: DiagnoseFragment)
+    fun inject(target: SignUpFragment)
+
 
 
     @Component.Builder

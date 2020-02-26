@@ -47,6 +47,7 @@ class DemoFragment : BaseFragment() {
         binding.viewPager.adapter = DemoPagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ -> }.attach()
         binding.signInTextView.paintFlags = binding.signInTextView.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+
         binding.signUpButton.setOnClickListener {
 
         }
