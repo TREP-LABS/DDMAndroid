@@ -6,6 +6,7 @@ import com.treplabs.ddm.ddmapp.screens.history.HistoryFragment
 import com.treplabs.ddm.ddmapp.screens.login.SignInFragment
 import com.treplabs.ddm.ddmapp.screens.otp.OTPFragment
 import com.treplabs.ddm.ddmapp.screens.otpdialog.OTPDialogFragment
+import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordFragment
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileFragment
 import com.treplabs.ddm.ddmapp.screens.signup.SignUpFragment
 import dagger.BindsInstance
@@ -27,7 +28,7 @@ interface AppComponent {
     fun inject(target: SignUpFragment)
     fun inject(target: OTPDialogFragment)
     fun inject(target: OTPFragment)
-
+    fun inject(target: CreatePasswordFragment)
 
 
     @Component.Builder

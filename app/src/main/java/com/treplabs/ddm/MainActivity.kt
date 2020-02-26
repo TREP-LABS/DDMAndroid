@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.loginFragment -> bottomNavigationView.hide()
+               // R.id.loginFragment -> bottomNavigationView.hide()
             }
         }
     }

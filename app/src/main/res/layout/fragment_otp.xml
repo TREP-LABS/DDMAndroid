@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.treplabs.ddm.ddmapp.screens.otp.OTPFragment" />
+            type="com.treplabs.ddm.ddmapp.screens.otp.OTPViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
