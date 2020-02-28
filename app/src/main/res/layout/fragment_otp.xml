@@ -29,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.chaos.view.PinView
+            android:inputType="number"
             android:id="@+id/firstPinView"
             style="@style/PinWidget.PinView"
             android:layout_width="wrap_content"
@@ -38,14 +39,12 @@
             android:layout_marginEnd="30dp"
             android:cursorVisible="true"
             android:hint="OTP"
-            android:inputType="text"
-            android:itemBackground="@mipmap/ic_launcher"
             android:padding="4dp"
             android:textSize="18sp"
             android:textStyle="bold"
             app:cursorColor="?colorAccent"
             app:cursorWidth="2dp"
-            app:hideLineWhenFilled="true"
+            app:hideLineWhenFilled="false"
             app:itemCount="6"
             app:itemHeight="48dp"
             app:itemRadius="4dp"

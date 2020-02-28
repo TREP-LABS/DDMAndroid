@@ -1,6 +1,7 @@
 package com.treplabs.ddm
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_main)
         setUpNavigation()
     }

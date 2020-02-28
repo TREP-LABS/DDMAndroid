@@ -55,6 +55,9 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:padding="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/textColorPrimary"
             android:gravity="center"
             android:id="@+id/sign_in_text_view"
             android:layout_width="wrap_content"
@@ -63,7 +66,6 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:text="Sign In, if you already have an account"
-            android:textColor="@color/textColorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

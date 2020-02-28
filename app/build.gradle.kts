@@ -14,7 +14,7 @@ android {
     compileSdkVersion(Config.SdkVersions.compile)
 
     defaultConfig {
-        applicationId = "com.cottacush.android.ginger"
+        applicationId = "com.treplabs.ddm"
         minSdkVersion(Config.SdkVersions.min)
         targetSdkVersion(Config.SdkVersions.target)
         versionCode = Config.PublishVersion.code
