@@ -64,12 +64,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/get_started_button"
+            android:id="@+id/proceed_button"
             style="@style/AppTheme.HorizontalButtonAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Next"
+            android:text="Proceed"
             app:layout_constraintBottom_toTopOf="@+id/sign_in_link"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

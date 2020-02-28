@@ -1,11 +1,13 @@
 package com.treplabs.ddm.extensions
 
+import android.graphics.Paint
 import android.text.InputFilter
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.core.view.children
 import androidx.core.widget.NestedScrollView
@@ -65,4 +67,8 @@ fun View.setViewPadding(@DimenRes topBottomPaddingRes: Int, @DimenRes leftRightP
 
 fun EditText.setMaxLength(length: Int) {
     this.filters = arrayOf(InputFilter.LengthFilter(length))
+}
+
+fun TextView.underline() {
+    paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
 }

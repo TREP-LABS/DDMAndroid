@@ -26,10 +26,12 @@ class WelcomeFragment : BaseFragment() {
         setUpToolbar()
 
         binding.getStartedButton.setOnClickListener {
+
         }
 
 
         binding.signInButton.setOnClickListener {
+
         }
     }
 

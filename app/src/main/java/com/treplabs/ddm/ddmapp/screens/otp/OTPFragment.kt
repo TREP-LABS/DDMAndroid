@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentOtpBinding
@@ -38,10 +39,14 @@ class OTPFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(OTPViewModel::class.java)
         binding.viewModel = viewModel
+
+        binding.proceedButton.setOnClickListener {
+            findNavController().navigate(OTPFragmentDirections.actionOTPFragmentToCreatePasswordFragment())
+        }
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar("Account", true)
+        setUpToolBar("", false)
         invalidateToolbarElevation(0)
     }
 

@@ -6,73 +6,100 @@
     app:startDestination="@id/demoFragment">
 
     <fragment
-        tools:layout="@layout/fragment_diagnose"
         android:id="@+id/diagnoseFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseFragment"
-        android:label="DiagnoseFragment" >
+        android:label="DiagnoseFragment"
+        tools:layout="@layout/fragment_diagnose">
         <action
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
             android:id="@+id/action_diagnoseFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_signin"
         android:id="@+id/loginFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.login.SignInFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_signin">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_history"
         android:id="@+id/historyFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.history.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history" />
     <fragment
-        tools:layout="@layout/fragment_profile"
         android:id="@+id/profileFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
     <fragment
-        tools:layout="@layout/fragment_welcome"
         android:id="@+id/welcomeFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.demo.WelcomeFragment"
-        android:label="WelcomeFragment" />
+        android:label="WelcomeFragment"
+        tools:layout="@layout/fragment_welcome" />
     <fragment
-        tools:layout="@layout/fragment_demo"
         android:id="@+id/demoFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.demo.DemoFragment"
-        android:label="DemoFragment" >
+        android:label="DemoFragment"
+        tools:layout="@layout/fragment_demo">
         <action
             android:id="@+id/action_demoFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_demoFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_signup"
         android:id="@+id/signUpFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.signup.SignUpFragment"
-        android:label="SignUpFragment" >
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signUpFragment_to_OTPFragment"
-            app:destination="@id/OTPFragment" />
+            app:destination="@id/OTPFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_otp"
         android:id="@+id/OTPFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.otp.OTPFragment"
-        android:label="OTPFragment" >
+        android:label="OTPFragment"
+        tools:layout="@layout/fragment_otp">
         <action
             android:id="@+id/action_OTPFragment_to_createPasswordFragment"
-            app:destination="@id/createPasswordFragment" />
+            app:destination="@id/createPasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_create_password"
         android:id="@+id/createPasswordFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.password.CreatePasswordFragment"
-        android:label="CreatePasswordFragment" />
+        android:label="CreatePasswordFragment"
+        tools:layout="@layout/fragment_create_password" />
 </navigation>

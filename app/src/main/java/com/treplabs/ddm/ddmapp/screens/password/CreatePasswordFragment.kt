@@ -30,7 +30,7 @@ class CreatePasswordFragment : BaseFragment() {
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar("", true)
+        setUpToolBar("", false)
         invalidateToolbarElevation(0)
     }
 }
