@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-               // R.id.loginFragment -> bottomNavigationView.hide()
+                // R.id.loginFragment -> bottomNavigationView.hide()
             }
         }
     }
@@ -53,10 +53,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
             toolbarTitleTextView.text = toolbarTitle
             val leftRightPaddingRes =
                 if (isRootPage) R.dimen.toolbar_left_right_padding_root else R.dimen.toolbar_left_right_padding
-            toolbarTitleTextView.setViewPadding(
-                R.dimen.toolbar_top_bottom_padding,
-                leftRightPaddingRes
-            )
+            toolbarTitleTextView.setViewPadding(R.dimen.toolbar_top_bottom_padding, leftRightPaddingRes)
         }
     }
 

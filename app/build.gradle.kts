@@ -69,6 +69,10 @@ android {
     flavorDimensions("implementation")
 
     productFlavors {
+        val properties =  Properties()
+        properties.load(rootProject.file("local.properties").inputStream())
+        val fbDbSecrete = properties.getProperty("FB_DB_SECRETE")
+
         create("production") {
             buildConfigField("String", "API_BASE_URL", "\"https://API-creds\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API-creds\"")
@@ -78,6 +82,9 @@ android {
             versionNameSuffix = "-production"
         }
         create("staging") {
+            buildConfigField("String", "FB_AUTH_REST_BASE_URL",
+                "\"https://identitytoolkit.googleapis.com/\"")
+            buildConfigField("String", "FB_DB_SECRETE", fbDbSecrete)
             buildConfigField("String", "API_BASE_URL", "\"https://API\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API\"")
             buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API\"")
@@ -117,6 +124,7 @@ dependencies {
     implementation(Config.Libs.AndroidX.browser)
     implementation(Config.Libs.AndroidX.core)
     implementation(Config.Libs.AndroidX.lifeCycleExt)
+    implementation(Config.Libs.AndroidX.lifeCycleReactive)
     implementation(Config.Libs.AndroidX.lifeCycleViewModel)
     implementation(Config.Libs.AndroidX.navigationFragment)
     implementation(Config.Libs.AndroidX.navigationUI)
@@ -146,6 +154,12 @@ dependencies {
     //Firebase
     implementation(Config.Libs.Firebase.auth)
     implementation(Config.Libs.Firebase.googlePlayServices)
+
+    //Rx
+    implementation(Config.Libs.Reactive.rxJava)
+    implementation(Config.Libs.Reactive.rxAndroid)
+    implementation(Config.Libs.Reactive.rxKotlin)
+    implementation(Config.Libs.Reactive.rxRetrofitAdapter)
 }
 
 apply(from = "../spotless.gradle")

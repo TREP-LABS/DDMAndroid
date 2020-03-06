@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,15 +30,15 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="30dp"
-            android:hint="Name"
+            android:hint="Email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameEditText"
+                android:id="@+id/emailEditText"
                 style="@style/AppTheme.TextInputLayouts"
-                android:inputType="text" />
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,15 +50,38 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="30dp"
-            android:hint="Phone number"
+            android:hint="Password"
             app:layout_constraintEnd_toEndOf="parent"
+            app:passwordToggleEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_edit_text"
                 style="@style/AppTheme.TextInputLayouts"
-                android:inputType="phone" />
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirmPasswordInputLayout"
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="match_parent"
+            app:passwordToggleEnabled="true"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="30dp"
+            android:hint="Confirm password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPassword_edit_text"
+                style="@style/AppTheme.TextInputLayouts"
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,9 +95,8 @@
             app:layout_constraintBottom_toTopOf="@+id/sign_in_link"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/confirmPasswordInputLayout"
             app:layout_constraintVertical_bias="0.0" />
-
 
         <TextView
             android:padding="8dp"

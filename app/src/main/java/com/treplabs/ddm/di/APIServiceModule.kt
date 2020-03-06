@@ -26,11 +26,11 @@ import javax.inject.Singleton
 class APIServiceModule {
 
     @Provides
-    @Named("ExampleAPIService")
+    @Named("DDMAPIService")
     @Singleton
     fun provideExampleServiceHttpClient(
         upstream: OkHttpClient,
-        @Named("ExampleAPIService") accessTokenProvider: AccessTokenProvider
+        @Named("DDMAPIService") accessTokenProvider: AccessTokenProvider
     ): OkHttpClient {
         return upstream.newBuilder()
             .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
@@ -55,7 +55,7 @@ class APIServiceModule {
     @Provides
     @Singleton
     fun provideExampleAPIService(
-        @Named("ExampleAPIService") client: Lazy<OkHttpClient>,
+        @Named("DDMAPIService") client: Lazy<OkHttpClient>,
         gson: Gson
     ): ExampleApiService {
         return Retrofit.Builder()
@@ -67,7 +67,7 @@ class APIServiceModule {
     }
 
     @Provides
-    @Named("ExampleAPIService")
+    @Named("DDMAPIService")
     fun provideAccessTokenProvider(accessTokenProvider: AccessTokenProviderImpl): AccessTokenProvider =
         accessTokenProvider
 

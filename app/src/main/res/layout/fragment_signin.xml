@@ -32,7 +32,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="30dp"
-            android:hint="Phone Number"
+            android:hint="Email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -40,7 +40,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pinEditText"
                 style="@style/AppTheme.TextInputLayouts"
-                android:inputType="phone" />
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,74 +71,58 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
             android:text="Sign In"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout"
-            app:layout_constraintVertical_bias="0.19" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
 
         <com.google.android.material.button.MaterialButton
-            app:iconTint="@null"
-            app:icon="@drawable/google_logo"
-            app:iconSize="20dp"
-            android:id="@+id/google_button_button"
+            android:id="@+id/google_sign_in_button"
             style="@style/AppTheme.OutlineButtonAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="30dp"
-            android:text="Google"
-            app:layout_constraintBaseline_toBaselineOf="@+id/facebook_button"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="60dp"
+            android:text="Sign in with Google"
+            app:icon="@drawable/fui_ic_googleg_color_24dp"
+            app:iconSize="20dp"
+            app:iconTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/facebook_button" />
-
-        <com.google.android.material.button.MaterialButton
-            app:iconTint="@null"
-            app:icon="@drawable/facebook_logo"
-            app:iconSize="20dp"
-            android:id="@+id/facebook_button"
-            style="@style/AppTheme.OutlineButtonAppearance"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="30dp"
-            android:text="Facebook"
-            app:layout_constraintBottom_toTopOf="@+id/sign_up_text_view"
-            app:layout_constraintEnd_toStartOf="@+id/google_button_button"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
         <TextView
-            android:padding="8dp"
-            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/sign_up_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
+            android:padding="8dp"
             android:text="Sign Up, if you don’t have an account"
             android:textColor="@color/textColorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/google_sign_in_button"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Or sign in Using"
-            app:layout_constraintBottom_toTopOf="@+id/facebook_button"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:text="Or jump right in with your Google account"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/get_started_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

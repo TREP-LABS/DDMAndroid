@@ -37,7 +37,7 @@ object Config {
         object AndroidX {
             internal const val navigationVersion = "1.0.0"
             private const val lifeCycleVersion = "2.1.0-alpha01"
-
+            const val lifeCycleReactive = "android.arch.lifecycle:reactivestreams:$lifeCycleVersion"
             const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
             const val lifeCycleViewModel =
                 "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
@@ -81,6 +81,14 @@ object Config {
             const val auth = "com.google.firebase:firebase-auth:19.2.0"
             const val googlePlayServices = "com.google.android.gms:play-services-auth:17.0.0"
         }
+
+        object Reactive {
+            const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.17"
+            const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
+            const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
+            const val rxRetrofitAdapter = "com.squareup.retrofit2:adapter-rxjava2:2.7.1"
+        }
+
     }
 
     object Plugins {

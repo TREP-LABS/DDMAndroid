@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "53696333614",
+    "firebase_url": "https://ddmandroid-93b42.firebaseio.com",
+    "project_id": "ddmandroid-93b42",
+    "storage_bucket": "ddmandroid-93b42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53696333614:android:da1e61382677afe73a1cbf",
+        "android_client_info": {
+          "package_name": "com.treplabs.ddm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53696333614-34gsqtvor0pdi25pidbnd7rniprpotg7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.treplabs.ddm",
+            "certificate_hash": "8751cb6beea135da0c00d04995b0138428668fb9"
+          }
+        },
+        {
+          "client_id": "53696333614-2ur6fn63dqit1k5kuc8pt45as26vh935.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkAE03rJnfKPvgyCndqtsXV8q4SJc-K0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53696333614-2ur6fn63dqit1k5kuc8pt45as26vh935.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,7 +17,7 @@ import javax.inject.Singleton
  * Created by Rasheed Sulayman.
  */
 @Singleton
-@Component(modules = [APIServiceModule::class, ViewModelModule::class])
+@Component(modules = [APIServiceModule::class, ViewModelModule::class, GoogleServicesModule::class])
 interface AppComponent {
 
     //TODO inject stuff
