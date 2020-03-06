@@ -8,6 +8,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-android-extensions")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -51,11 +52,11 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true
+           /* isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            )
+            )*/
             versionNameSuffix = "-release"
             signingConfig = signingConfigs.getByName("config")
         }
@@ -91,7 +92,7 @@ android {
             variant.outputs.map { it as BaseVariantOutputImpl }
                 .forEach { output ->
                     println("The variant is: ${variant.versionName}")
-                    output.outputFileName = "BaseProjApp-${variant.versionName}.apk"
+                    output.outputFileName = "Itoju-${variant.versionName}.apk"
                 }
         }
     })
@@ -141,6 +142,10 @@ dependencies {
     implementation(Config.Libs.Misc.countryCodePicker)
     implementation(Config.Libs.Misc.googlePlayServices)
     implementation(Config.Libs.Misc.pinView)
+
+    //Firebase
+    implementation(Config.Libs.Firebase.auth)
+    implementation(Config.Libs.Firebase.googlePlayServices)
 }
 
 apply(from = "../spotless.gradle")

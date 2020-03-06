@@ -12,6 +12,7 @@ buildscript {
         classpath(Config.Plugins.spotless)
         classpath(Config.Plugins.kotlin)
         classpath(Config.Plugins.navSaveArgs)
+        classpath(Config.Plugins.gmsServices)
     }
 }
 

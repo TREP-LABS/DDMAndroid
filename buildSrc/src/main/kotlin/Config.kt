@@ -76,6 +76,11 @@ object Config {
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
             const val pinView = "com.chaos.view:pinview:1.4.3"
         }
+
+        object Firebase {
+            const val auth = "com.google.firebase:firebase-auth:19.2.0"
+            const val googlePlayServices = "com.google.android.gms:play-services-auth:17.0.0"
+        }
     }
 
     object Plugins {
@@ -84,6 +89,7 @@ object Config {
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Libs.Kotlin.kotlinVersion}"
         const val navSaveArgs =
             "android.arch.navigation:navigation-safe-args-gradle-plugin:${Libs.AndroidX.navigationVersion}"
+        const val gmsServices = "com.google.gms:google-services:4.2.0"
     }
 
 }
