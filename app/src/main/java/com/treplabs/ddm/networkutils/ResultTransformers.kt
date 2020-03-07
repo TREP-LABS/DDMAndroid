@@ -12,7 +12,9 @@ import org.reactivestreams.Publisher
 import retrofit2.Response
 import timber.log.Timber
 
-// Still not sure of what to name this file as of now 🤔
+/**
+ * Created by Rasheed Sulayman.
+ */
 
 fun <T : Any> Single<Response<BaseAPIResponse<T>>>.toResult(): Single<Result<T>> {
     return compose { item ->

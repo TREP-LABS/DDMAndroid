@@ -39,6 +39,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         tools:visibility="visible"
         android:visibility="gone"
+        app:itemIconSize="24dp"
         app:itemIconTint="@drawable/bottom_navigation_colors"
         app:itemTextColor="@drawable/bottom_navigation_colors"
         app:menu="@menu/bottom_nav_actions"

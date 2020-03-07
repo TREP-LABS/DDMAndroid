@@ -1,4 +1,4 @@
-package com.treplabs.ddm.ddmapp.screens.diagnose
+package com.treplabs.ddm.ddmapp.screens.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,23 +9,24 @@ import androidx.lifecycle.ViewModelProviders
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentDiagnoseBinding
+import com.treplabs.ddm.databinding.FragmentSettingsBinding
 import javax.inject.Inject
 
-class DiagnoseFragment : BaseViewModelFragment() {
+class SettingsFragment : BaseViewModelFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: DiagnoseViewModel
+    private lateinit var viewModel: SettingsViewModel
 
-    lateinit var binding: FragmentDiagnoseBinding
+    lateinit var binding: FragmentSettingsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDiagnoseBinding.inflate(inflater)
+        binding = FragmentSettingsBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -34,12 +35,12 @@ class DiagnoseFragment : BaseViewModelFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar()
         daggerAppComponent.inject(this)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DiagnoseViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SettingsViewModel::class.java)
         binding.viewModel = viewModel
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar("Diagnose", true)
+        setUpToolBar("Settings", true)
         invalidateToolbarElevation(0)
     }
 

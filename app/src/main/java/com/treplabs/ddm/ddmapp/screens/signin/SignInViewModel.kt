@@ -1,7 +1,8 @@
-package com.treplabs.ddm.ddmapp.screens.login
+package com.treplabs.ddm.ddmapp.screens.signin
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.ddmapp.models.request.SignInRequest
@@ -17,18 +18,32 @@ class SignInViewModel @Inject constructor(
     private val firebaseAuthRepository: FirebaseAuthRepository
 ) : BaseViewModel() {
 
-    private val _signInComplete = MutableLiveData<Event<FirebaseUser>>()
+    private val _signInComplete = MutableLiveData<Event<Boolean>>()
 
-    val signInComplete: LiveData<Event<FirebaseUser>>
+    val signInComplete: LiveData<Event<Boolean>>
         get() = _signInComplete
 
-    fun signIn(signUpRequest: SignInRequest) {
+    fun signInWithPassword(signUpRequest: SignInRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Signing in, please wait")
         firebaseAuthRepository.signInWithPassword(signUpRequest)
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
-                        _signInComplete.value = Event(it.data)
+                        _signInComplete.value = Event(true)
+                        _loadingStatus.value = LoadingStatus.Success
+                    }
+                    is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
+                }
+            }.disposeBy(disposeBag)
+    }
+
+    fun signInWithGoogle(acct: GoogleSignInAccount) {
+        _loadingStatus.value = LoadingStatus.Loading("Signing in, please wait")
+        firebaseAuthRepository.signInWithGoogle(acct)
+            .subscribeBy {
+                when (it) {
+                    is Result.Success -> {
+                        _signInComplete.value = Event(true)
                         _loadingStatus.value = LoadingStatus.Success
                     }
                     is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)

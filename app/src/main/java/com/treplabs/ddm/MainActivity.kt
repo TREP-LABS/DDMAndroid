@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var currentFragment: BaseFragment
 
+    private val rootNavFragments =
+        hashSetOf(R.id.settingsFragment, R.id.diagnoseFragment, R.id.profileFragment, R.id.historyFragment)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -40,9 +43,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            when (destination.id) {
-                // R.id.loginFragment -> bottomNavigationView.hide()
-            }
+            if (rootNavFragments.contains(destination.id)) bottomNavigationView.show() else bottomNavigationView.hide()
         }
     }
 

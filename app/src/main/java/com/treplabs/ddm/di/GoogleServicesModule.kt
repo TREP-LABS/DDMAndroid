@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.treplabs.ddm.BuildConfig
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,7 +20,7 @@ class GoogleServicesModule {
     @Singleton
     fun provideGoogleSignInClient(app: Application): GoogleSignInClient {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            //  .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(BuildConfig.FB_AUTH_WEB_ID_TOKEN)
             .requestEmail()
             .build()
         return GoogleSignIn.getClient(app, gso)

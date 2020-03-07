@@ -3,11 +3,12 @@ package com.treplabs.ddm.di
 import android.app.Application
 import com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseFragment
 import com.treplabs.ddm.ddmapp.screens.history.HistoryFragment
-import com.treplabs.ddm.ddmapp.screens.login.SignInFragment
+import com.treplabs.ddm.ddmapp.screens.signin.SignInFragment
 import com.treplabs.ddm.ddmapp.screens.otp.OTPFragment
 import com.treplabs.ddm.ddmapp.screens.otpdialog.OTPDialogFragment
 import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordFragment
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileFragment
+import com.treplabs.ddm.ddmapp.screens.settings.SettingsFragment
 import com.treplabs.ddm.ddmapp.screens.signup.SignUpFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -29,6 +30,8 @@ interface AppComponent {
     fun inject(target: OTPDialogFragment)
     fun inject(target: OTPFragment)
     fun inject(target: CreatePasswordFragment)
+    fun inject(target: SettingsFragment)
+
 
 
     @Component.Builder

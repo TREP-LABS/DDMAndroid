@@ -3,17 +3,22 @@
 
     <item
         android:id="@id/diagnoseFragment"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/diagnose"
         android:title="Diagnose" />
 
     <item
         android:id="@id/historyFragment"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_baseline_history_white_24"
         android:title="History" />
 
     <item
         android:id="@id/profileFragment"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_outline_person_white_24"
         android:title="Profile" />
+
+    <item
+        android:id="@id/settingsFragment"
+        android:icon="@drawable/settings"
+        android:title="Settings" />
 
 </menu>

@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.treplabs.ddm.ddmapp.screens.login.SignInFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.signin.SignInFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_signin">
         <action
@@ -28,6 +28,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_loginFragment_to_diagnoseFragment"
+            app:destination="@id/diagnoseFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -70,13 +73,6 @@
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_signup">
         <action
-            android:id="@+id/action_signUpFragment_to_OTPFragment"
-            app:destination="@id/OTPFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -102,4 +98,9 @@
         android:name="com.treplabs.ddm.ddmapp.screens.password.CreatePasswordFragment"
         android:label="CreatePasswordFragment"
         tools:layout="@layout/fragment_create_password" />
+    <fragment
+        tools:layout="@layout/fragment_settings"
+        android:id="@+id/settingsFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

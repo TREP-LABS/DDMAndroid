@@ -39,7 +39,7 @@ class HistoryFragment : BaseViewModelFragment() {
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar("Account", true)
+        setUpToolBar("History", true)
         invalidateToolbarElevation(0)
     }
 

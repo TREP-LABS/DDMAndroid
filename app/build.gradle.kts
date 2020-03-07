@@ -72,6 +72,7 @@ android {
         val properties =  Properties()
         properties.load(rootProject.file("local.properties").inputStream())
         val fbDbSecrete = properties.getProperty("FB_DB_SECRETE")
+        val webIdToken = properties.getProperty("FB_AUTH_WEB_ID_TOKEN")
 
         create("production") {
             buildConfigField("String", "API_BASE_URL", "\"https://API-creds\"")
@@ -84,7 +85,8 @@ android {
         create("staging") {
             buildConfigField("String", "FB_AUTH_REST_BASE_URL",
                 "\"https://identitytoolkit.googleapis.com/\"")
-            buildConfigField("String", "FB_DB_SECRETE", fbDbSecrete)
+            buildConfigField("String", "FB_DB_SECRETE", "\"$fbDbSecrete\"")
+            buildConfigField("String", "FB_AUTH_WEB_ID_TOKEN", "\"$webIdToken\"")
             buildConfigField("String", "API_BASE_URL", "\"https://API\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API\"")
             buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API\"")

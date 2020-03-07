@@ -40,7 +40,7 @@ class ProfileFragment : BaseViewModelFragment() {
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar("Account", true)
+        setUpToolBar("Profile", true)
         invalidateToolbarElevation(0)
     }
 

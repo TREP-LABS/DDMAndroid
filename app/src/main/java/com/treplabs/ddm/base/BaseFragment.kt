@@ -36,6 +36,10 @@ abstract class BaseFragment : Fragment() {
         negativeAction: (() -> Unit)? = null
     ) = mainActivity.showDialogWithAction(title, body, positiveRes, positiveAction, negativeRes, negativeAction)
 
+    fun showSnackBar(@StringRes stringRes: Int) = mainActivity.showSnackBar(getString(stringRes))
+
+    fun showSnackBar(message: String) = mainActivity.showSnackBar(message)
+
 
     // Return true if you handle the back press in your fragment
     open fun onBackPressed(): Boolean = false

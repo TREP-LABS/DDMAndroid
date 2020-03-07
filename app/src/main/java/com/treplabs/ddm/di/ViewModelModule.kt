@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseViewModel
 import com.treplabs.ddm.ddmapp.screens.history.HistoryViewModel
-import com.treplabs.ddm.ddmapp.screens.login.SignInViewModel
+import com.treplabs.ddm.ddmapp.screens.signin.SignInViewModel
 import com.treplabs.ddm.ddmapp.screens.otp.OTPViewModel
 import com.treplabs.ddm.ddmapp.screens.otpdialog.OTPDialogViewModel
-import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordFragment
 import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordViewModel
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileViewModel
+import com.treplabs.ddm.ddmapp.screens.settings.SettingsViewModel
 import com.treplabs.ddm.ddmapp.screens.signup.SignUpViewModel
 import dagger.Binds
 import dagger.Module
@@ -61,5 +61,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CreatePasswordViewModel::class)
     abstract fun bindCreatePasswordViewModel(viewModel: CreatePasswordViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    abstract fun bindSettingsViewModel(viewModel: SettingsViewModel): ViewModel
 
 }
