@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.treplabs.ddm.ddmapp.screens.condition.DiagnoseResultViewModel" />
+            type="com.treplabs.ddm.ddmapp.screens.diagnosisresult.DiagnoseResultViewModel" />
 
         <variable
             name="condition"
@@ -111,7 +112,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10"
             app:layout_constraintVertical_bias="1.0"
             app:strokeColor="@color/colorAccent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

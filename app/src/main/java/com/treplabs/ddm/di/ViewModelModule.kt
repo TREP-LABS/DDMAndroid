@@ -2,7 +2,8 @@ package com.treplabs.ddm.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.treplabs.ddm.ddmapp.screens.condition.DiagnoseResultViewModel
+import com.treplabs.ddm.ddmapp.screens.condition.ChooseConditionViewModel
+import com.treplabs.ddm.ddmapp.screens.diagnosisresult.DiagnoseResultViewModel
 import com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseViewModel
 import com.treplabs.ddm.ddmapp.screens.history.HistoryViewModel
 import com.treplabs.ddm.ddmapp.screens.signin.SignInViewModel
@@ -78,4 +79,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DiagnoseResultViewModel::class)
     abstract fun bindDiagnoseResultViewModel(viewModel: DiagnoseResultViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChooseConditionViewModel::class)
+    abstract fun bindChooseConditionViewModel(viewModel: ChooseConditionViewModel): ViewModel
 }

@@ -1,7 +1,8 @@
 package com.treplabs.ddm.di
 
 import android.app.Application
-import com.treplabs.ddm.ddmapp.screens.condition.DiagnoseResultFragment
+import com.treplabs.ddm.ddmapp.screens.condition.ChooseConditionFragment
+import com.treplabs.ddm.ddmapp.screens.diagnosisresult.DiagnoseResultFragment
 import com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseFragment
 import com.treplabs.ddm.ddmapp.screens.history.HistoryFragment
 import com.treplabs.ddm.ddmapp.screens.signin.SignInFragment
@@ -35,6 +36,7 @@ interface AppComponent {
     fun inject(target: SettingsFragment)
     fun inject(target: SymptomsFragment)
     fun inject(target: DiagnoseResultFragment)
+    fun inject(target: ChooseConditionFragment)
 
 
     @Component.Builder

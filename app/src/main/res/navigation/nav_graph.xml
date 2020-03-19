@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http:/m/schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/demoFragment">
+    app:startDestination="@id/diagnoseFragment">
 
     <fragment
         android:id="@+id/diagnoseFragment"
@@ -15,6 +15,17 @@
             app:destination="@id/loginFragment"
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph" />
+        <action
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            android:id="@+id/action_diagnoseFragment_to_demoFragment"
+            app:destination="@id/demoFragment" />
+        <action
+            android:id="@+id/action_diagnoseFragment_to_symptomsFragment"
+            app:destination="@id/symptomsFragment" />
+        <action
+            android:id="@+id/action_diagnoseFragment_to_chooseConditionFragment"
+            app:destination="@id/chooseConditionFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -103,4 +114,31 @@
         android:id="@+id/settingsFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.settings.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        tools:layout="@layout/fragment_symptoms"
+        android:id="@+id/symptomsFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.symptoms.SymptomsFragment"
+        android:label="SymptomsFragment" >
+        <action
+            android:id="@+id/action_symptomsFragment_to_diagnoseResultFragment"
+            app:destination="@id/diagnoseResultFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_diagnose_result"
+        android:id="@+id/diagnoseResultFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.diagnosisresult.DiagnoseResultFragment"
+        android:label="DiagnoseResultFragment" >
+        <argument
+            android:name="condition"
+            app:argType="com.treplabs.ddm.ddmapp.models.request.Condition" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_choose_condition"
+        android:id="@+id/chooseConditionFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.condition.ChooseConditionFragment"
+        android:label="ChooseConditionFragment" >
+        <action
+            android:id="@+id/action_chooseConditionFragment_to_diagnoseResultFragment"
+            app:destination="@id/diagnoseResultFragment" />
+    </fragment>
 </navigation>

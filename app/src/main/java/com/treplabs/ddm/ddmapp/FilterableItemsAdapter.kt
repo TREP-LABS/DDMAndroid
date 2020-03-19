@@ -1,21 +1,20 @@
-package com.treplabs.ddm.ddmapp.screens.symptoms
+package com.treplabs.ddm.ddmapp
 
 import android.content.Context
 import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.Filterable
-import com.treplabs.ddm.ddmapp.datasources.repositories.SymptomsRepository
-import com.treplabs.ddm.ddmapp.models.request.Symptom
+import com.treplabs.ddm.ddmapp.datasources.FilterableDataSource
 
-class SymptomsItemsAdapter(context: Context, val dataSource: SymptomsRepository) :
-    ArrayAdapter<Symptom>(context, android.R.layout.simple_dropdown_item_1line), Filterable {
-    private var resultList: List<Symptom>? = null
+class FilterableItemsAdapter<T>(context: Context, val dataSource: FilterableDataSource<T>) :
+    ArrayAdapter<T>(context, android.R.layout.simple_dropdown_item_1line), Filterable {
+    private var resultList: List<T>? = null
 
     override fun getCount(): Int {
         return resultList!!.size
     }
 
-    override fun getItem(index: Int): Symptom {
+    override fun getItem(index: Int): T {
         return resultList!![index]
     }
 
@@ -25,7 +24,7 @@ class SymptomsItemsAdapter(context: Context, val dataSource: SymptomsRepository)
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val filterResults = FilterResults()
                 if (constraint != null) { // Retrieve the autocomplete results.
-                    resultList = dataSource.getSymptoms(constraint.toString())
+                    resultList = dataSource.getFilteredItems(constraint.toString())
                     filterResults.values = resultList
                     filterResults.count = resultList!!.size
                 }

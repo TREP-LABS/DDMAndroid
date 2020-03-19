@@ -5,13 +5,14 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.treplabs.ddm.Constants.APIDataKeys
 import com.treplabs.ddm.Constants.FireStorePaths
+import com.treplabs.ddm.ddmapp.datasources.FilterableDataSource
 import com.treplabs.ddm.ddmapp.models.request.Symptom
 import java.util.concurrent.ExecutionException
 import javax.inject.Inject
 
-class SymptomsRepository @Inject constructor() {
+class SymptomsRepository @Inject constructor() : FilterableDataSource<Symptom> {
 
-    fun getSymptoms(queryText: String): List<Symptom> {
+    private fun getSymptoms(queryText: String): List<Symptom> {
         return try {
             val task = Firebase.firestore.collection(FireStorePaths.symptoms)
                 .whereGreaterThanOrEqualTo(APIDataKeys.NAME, queryText)
@@ -21,4 +22,6 @@ class SymptomsRepository @Inject constructor() {
             emptyList()
         }
     }
+
+    override fun getFilteredItems(queryText: String): List<Symptom> = getSymptoms(queryText)
 }

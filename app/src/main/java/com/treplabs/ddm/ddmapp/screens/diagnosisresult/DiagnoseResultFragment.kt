@@ -1,18 +1,13 @@
-package com.treplabs.ddm.ddmapp.screens.condition
+package com.treplabs.ddm.ddmapp.screens.diagnosisresult
 
-import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.airbnb.lottie.LottieAnimationView
 import com.treplabs.ddm.base.BaseViewModelFragment
-import com.treplabs.ddm.databinding.FragmentDiagnoseBinding
 import com.treplabs.ddm.databinding.FragmentDiagnoseResultBinding
-import com.treplabs.ddm.databinding.FragmentSymptomsBinding
-import com.treplabs.ddm.ddmapp.datasources.repositories.SymptomsRepository
 import javax.inject.Inject
 
 class DiagnoseResultFragment : BaseViewModelFragment() {
