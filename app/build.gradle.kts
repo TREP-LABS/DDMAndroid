@@ -152,6 +152,7 @@ dependencies {
     implementation(Config.Libs.Misc.countryCodePicker)
     implementation(Config.Libs.Misc.googlePlayServices)
     implementation(Config.Libs.Misc.pinView)
+    implementation(Config.Libs.Misc.lottie)
 
     //Firebase
     implementation(Config.Libs.Firebase.auth)

@@ -75,6 +75,7 @@ object Config {
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
             const val pinView = "com.chaos.view:pinview:1.4.3"
+            const val lottie  = "com.airbnb.android:lottie:3.4.0"
         }
 
         object Firebase {

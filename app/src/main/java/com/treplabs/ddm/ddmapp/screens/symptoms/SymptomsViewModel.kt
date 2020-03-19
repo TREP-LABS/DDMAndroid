@@ -65,7 +65,7 @@ class SymptomsViewModel @Inject constructor(
                     highestKey = key
                 }
             }
-            //TODO improve the function to retur set of top functions, or probably even rank
+            //TODO improve the function to return set of top functions, or probably even rank
             highestKey!!
         }.subscribeOn(Schedulers.computation())
     }

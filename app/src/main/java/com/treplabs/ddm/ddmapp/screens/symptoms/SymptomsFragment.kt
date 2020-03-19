@@ -41,7 +41,6 @@ class SymptomsFragment : BaseViewModelFragment() {
         setUpToolbar()
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SymptomsViewModel::class.java)
-
         binding.symptomEditText.setAdapter(SymptomsItemsAdapter(mainActivity, symptomsRepository))
 
         binding.symptomEditText.setOnItemClickListener { adapter, _, position, _ ->
