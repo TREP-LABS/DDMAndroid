@@ -55,5 +55,15 @@
         <item name="fontFamily">@font/lato_black</item>
     </style>
 
+    <style name="AppTheme.TextAppearance.TextInputLayoutOutline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorPrimary">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.TextInputLayoutStyleOutline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="strokeColor">@color/colorAccent</item>
+        <item name="android:theme">@style/AppTheme.TextAppearance.TextInputLayoutOutline</item>
+    </style>
+
+
 
 </resources>

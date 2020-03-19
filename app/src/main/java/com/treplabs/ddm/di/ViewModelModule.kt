@@ -11,6 +11,7 @@ import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordViewModel
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileViewModel
 import com.treplabs.ddm.ddmapp.screens.settings.SettingsViewModel
 import com.treplabs.ddm.ddmapp.screens.signup.SignUpViewModel
+import com.treplabs.ddm.ddmapp.screens.symptoms.SymptomsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -67,4 +68,8 @@ abstract class ViewModelModule {
     @ViewModelKey(SettingsViewModel::class)
     abstract fun bindSettingsViewModel(viewModel: SettingsViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(SymptomsViewModel::class)
+    abstract fun bindSymptomsViewModel(viewModel: SymptomsViewModel): ViewModel
 }

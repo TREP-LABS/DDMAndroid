@@ -1,4 +1,4 @@
-package com.treplabs.ddm.ddmapp.repositories
+package com.treplabs.ddm.ddmapp.datasources.repositories
 
 import com.treplabs.ddm.BuildConfig
 import com.treplabs.ddm.ddmapp.apis.ExampleAPIAuthService

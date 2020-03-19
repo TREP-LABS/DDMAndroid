@@ -1,4 +1,4 @@
-package com.treplabs.ddm.extensions
+package com.treplabs.ddm.networkutils
 
 import androidx.annotation.CheckResult
 import com.google.android.gms.tasks.Task

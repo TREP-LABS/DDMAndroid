@@ -2,7 +2,7 @@ package com.treplabs.ddm.ddmapp.accesstoken
 
 import com.treplabs.ddm.auth.AccessTokenProvider
 import com.treplabs.ddm.ddmapp.PrefsValueHelper
-import com.treplabs.ddm.ddmapp.repositories.OauthRepository
+import com.treplabs.ddm.ddmapp.datasources.repositories.OauthRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.treplabs.ddm.networkutils.Result

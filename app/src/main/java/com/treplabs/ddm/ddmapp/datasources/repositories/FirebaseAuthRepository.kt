@@ -1,4 +1,4 @@
-package com.treplabs.ddm.ddmapp.repositories
+package com.treplabs.ddm.ddmapp.datasources.repositories
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.treplabs.ddm.ddmapp.models.request.SignInRequest
 import com.treplabs.ddm.ddmapp.models.request.SignUpRequest
-import com.treplabs.ddm.extensions.toSingle
+import com.treplabs.ddm.networkutils.toSingle
 import com.treplabs.ddm.networkutils.Result
 import com.treplabs.ddm.networkutils.toFirebaseUserResult
 import io.reactivex.Single

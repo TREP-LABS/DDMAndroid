@@ -10,6 +10,7 @@ import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordFragment
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileFragment
 import com.treplabs.ddm.ddmapp.screens.settings.SettingsFragment
 import com.treplabs.ddm.ddmapp.screens.signup.SignUpFragment
+import com.treplabs.ddm.ddmapp.screens.symptoms.SymptomsFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -31,8 +32,7 @@ interface AppComponent {
     fun inject(target: OTPFragment)
     fun inject(target: CreatePasswordFragment)
     fun inject(target: SettingsFragment)
-
-
+    fun inject(target: SymptomsFragment)
 
     @Component.Builder
     interface Builder {

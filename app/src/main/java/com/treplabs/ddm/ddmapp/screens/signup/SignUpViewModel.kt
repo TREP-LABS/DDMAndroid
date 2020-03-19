@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.ddmapp.models.request.SignInRequest
-import com.treplabs.ddm.ddmapp.repositories.FirebaseAuthRepository
+import com.treplabs.ddm.ddmapp.datasources.repositories.FirebaseAuthRepository
 import com.treplabs.ddm.networkutils.LoadingStatus
 import com.treplabs.ddm.networkutils.Result
 import com.treplabs.ddm.networkutils.disposeBy
