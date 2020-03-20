@@ -3,6 +3,7 @@ package com.treplabs.ddm.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.treplabs.ddm.ddmapp.screens.condition.ChooseConditionViewModel
+import com.treplabs.ddm.ddmapp.screens.demo.DemoViewModel
 import com.treplabs.ddm.ddmapp.screens.diagnosisresult.DiagnoseResultViewModel
 import com.treplabs.ddm.ddmapp.screens.diagnose.DiagnoseViewModel
 import com.treplabs.ddm.ddmapp.screens.history.HistoryViewModel
@@ -12,6 +13,7 @@ import com.treplabs.ddm.ddmapp.screens.otpdialog.OTPDialogViewModel
 import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordViewModel
 import com.treplabs.ddm.ddmapp.screens.profile.ProfileViewModel
 import com.treplabs.ddm.ddmapp.screens.settings.SettingsViewModel
+import com.treplabs.ddm.ddmapp.screens.shared.FilterableDataSharedViewModel
 import com.treplabs.ddm.ddmapp.screens.signup.SignUpViewModel
 import com.treplabs.ddm.ddmapp.screens.symptoms.SymptomsViewModel
 import dagger.Binds
@@ -84,4 +86,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ChooseConditionViewModel::class)
     abstract fun bindChooseConditionViewModel(viewModel: ChooseConditionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DemoViewModel::class)
+    abstract fun bindDemoViewModel(viewModel: DemoViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FilterableDataSharedViewModel::class)
+    abstract fun bindFilterableDataSharedViewModel(viewModel: FilterableDataSharedViewModel): ViewModel
 }

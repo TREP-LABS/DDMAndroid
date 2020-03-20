@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -56,6 +57,7 @@ class SignInFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
         binding.signUpTextView.underline()
+        binding.viewModel = viewModel
 
         binding.signUpTextView.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionLoginFragmentToSignUpFragment())
@@ -79,8 +81,13 @@ class SignInFragment : BaseViewModelFragment() {
                 SignInFragmentDirections.actionLoginFragmentToDiagnoseFragment()
             )
         })
-    }
 
+        viewModel.navigationFlow.observe(this, EventObserver {
+            if (it == NavigationFlow.NEW_USER) {
+                    findNavController().navigate(SignInFragmentDirections.actionLoginFragmentToDemoFragment())
+            }
+        })
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

@@ -1,6 +1,7 @@
 package com.treplabs.ddm
 
 import android.app.Application
+import com.google.firebase.firestore.FirebaseFirestore
 import com.treplabs.ddm.di.AppComponent
 import com.treplabs.ddm.di.DaggerAppComponent
 import timber.log.Timber
@@ -15,6 +16,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseFirestore.setLoggingEnabled(true);
         component = DaggerAppComponent.builder()
             .application(this)
             .build()

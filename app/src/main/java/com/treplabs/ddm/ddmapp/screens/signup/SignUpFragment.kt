@@ -13,6 +13,7 @@ import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentSigninBinding
 import com.treplabs.ddm.databinding.FragmentSignupBinding
 import com.treplabs.ddm.ddmapp.models.request.SignInRequest
+import com.treplabs.ddm.ddmapp.models.request.SignUpRequest
 import com.treplabs.ddm.ddmapp.screens.signin.SignInViewModel
 import com.treplabs.ddm.ddmapp.validateTextLayouts
 import com.treplabs.ddm.extensions.stringContent
@@ -39,7 +40,7 @@ class SignUpFragment : BaseViewModelFragment() {
         return binding.root
     }
 
-    override fun getViewModel()  = viewModel
+    override fun getViewModel() = viewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,10 +51,15 @@ class SignUpFragment : BaseViewModelFragment() {
         binding.signInLink.underline()
 
         binding.proceedButton.setOnClickListener {
-            if (validateTextLayouts(binding.emailEditText, binding.passwordEditText, binding.confirmPasswordEditText)) {
+            if (validateTextLayouts(
+                    binding.firstNameEditText, binding.lastNameEditText, binding.emailEditText,
+                    binding.passwordEditText, binding.confirmPasswordEditText
+                )
+            ) {
                 val firstPassword = binding.passwordEditText.stringContent()
                 val secondPassword = binding.confirmPasswordEditText.stringContent()
-                if (firstPassword.length <= 8) {
+
+                if (firstPassword.length < 8) {
                     showSnackBar("Password must be greater than or equal to 8 characters")
                     return@setOnClickListener
                 }
@@ -62,7 +68,11 @@ class SignUpFragment : BaseViewModelFragment() {
                     return@setOnClickListener
                 }
                 viewModel.signUpWithPassword(
-                    SignInRequest(binding.emailEditText.stringContent(), binding.passwordEditText.stringContent())
+                    SignUpRequest(
+                        binding.emailEditText.stringContent(),
+                        binding.passwordEditText.stringContent(),
+                        "${binding.firstNameEditText.stringContent()} ${binding.lastNameEditText.stringContent()}"
+                    )
                 )
             }
         }

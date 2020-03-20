@@ -4,20 +4,19 @@ import android.content.Context
 import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.Filterable
-import com.treplabs.ddm.ddmapp.datasources.FilterableDataSource
-import com.treplabs.ddm.extensions.snakeCase
 import timber.log.Timber
 
-class FilterableItemsAdapter<T>(context: Context, val dataSource: FilterableDataSource<T>) :
+class FilterableLocalItemsAdapter<T: FilterableDataClass>(context: Context, val backingList: List<T>) :
     ArrayAdapter<T>(context, android.R.layout.simple_dropdown_item_1line), Filterable {
-    private var resultList: List<T>? = null
+
+    var filteredItems: List<T> = backingList.toMutableList()
 
     override fun getCount(): Int {
-        return resultList!!.size
+        return filteredItems.size
     }
 
     override fun getItem(index: Int): T {
-        return resultList!![index]
+        return filteredItems[index]
     }
 
     override fun getFilter(): Filter {
@@ -27,9 +26,9 @@ class FilterableItemsAdapter<T>(context: Context, val dataSource: FilterableData
                 Timber.d("Get Filtered items")
                 val filterResults = FilterResults()
                 if (constraint != null) { // Retrieve the autocomplete results.
-                    resultList = dataSource.getFilteredItems(constraint.toString().snakeCase())
-                    filterResults.values = resultList
-                    filterResults.count = resultList!!.size
+                    filteredItems = backingList.filter { it.getFilterKey().contains(constraint, true) }
+                    filterResults.values = filteredItems
+                    filterResults.count = filteredItems.size
                 }
                 return filterResults
             }

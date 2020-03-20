@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -12,8 +13,10 @@ import com.google.android.material.chip.Chip
 import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentSymptomsBinding
 import com.treplabs.ddm.ddmapp.FilterableItemsAdapter
+import com.treplabs.ddm.ddmapp.FilterableLocalItemsAdapter
 import com.treplabs.ddm.ddmapp.datasources.repositories.SymptomsRepository
 import com.treplabs.ddm.ddmapp.models.request.Symptom
+import com.treplabs.ddm.ddmapp.screens.shared.FilterableDataSharedViewModel
 import com.treplabs.ddm.ddmapp.screens.signin.SignInFragmentDirections
 import com.treplabs.ddm.utils.EventObserver
 import javax.inject.Inject
@@ -45,9 +48,16 @@ class SymptomsFragment : BaseViewModelFragment() {
         setUpToolbar()
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SymptomsViewModel::class.java)
-        binding.symptomEditText.setAdapter(
-            FilterableItemsAdapter(mainActivity, symptomsRepository)
-        )
+
+
+        val sharedViewModel = mainActivity.run {
+            ViewModelProviders.of(this, viewModelFactory)
+                .get(FilterableDataSharedViewModel::class.java)
+        }
+
+        sharedViewModel.symptoms.observe(this, Observer {
+            binding.symptomEditText.setAdapter(FilterableLocalItemsAdapter(mainActivity, it))
+        })
 
         binding.symptomEditText.setOnItemClickListener { adapter, _, position, _ ->
             binding.symptomEditText.text = null
@@ -86,10 +96,10 @@ class SymptomsFragment : BaseViewModelFragment() {
         invalidateToolbarElevation(0)
     }
 
-
     private fun addChipToGroup(symptom: Symptom) {
         val chip = Chip(context)
         chip.text = symptom.name
+        chip.isCloseIconVisible = true
         binding.chipGroup.addView(chip)
         chip.tag = symptom
         chip.setOnCloseIconClickListener { binding.chipGroup.removeView(chip) }

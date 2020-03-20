@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http:/m/schemas.android.com/tools"
+    xmlns:tools="http://m/schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/diagnoseFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/diagnoseFragment"
@@ -12,25 +12,28 @@
         tools:layout="@layout/fragment_diagnose">
         <action
             android:id="@+id/action_diagnoseFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
+            app:destination="@id/signInFragment"
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph" />
         <action
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
-            android:id="@+id/action_diagnoseFragment_to_demoFragment"
-            app:destination="@id/demoFragment" />
-        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_diagnoseFragment_to_symptomsFragment"
             app:destination="@id/symptomsFragment" />
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_diagnoseFragment_to_chooseConditionFragment"
             app:destination="@id/chooseConditionFragment" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
+        android:id="@+id/signInFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.signin.SignInFragment"
-        android:label="LoginFragment"
+        android:label="SignInFragment"
         tools:layout="@layout/fragment_signin">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
@@ -40,8 +43,19 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
             android:id="@+id/action_loginFragment_to_diagnoseFragment"
             app:destination="@id/diagnoseFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_demoFragment"
+            app:destination="@id/demoFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -72,7 +86,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_demoFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
+            app:destination="@id/signInFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -84,8 +98,10 @@
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_signup">
         <action
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
             android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
+            app:destination="@id/signInFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -120,6 +136,10 @@
         android:name="com.treplabs.ddm.ddmapp.screens.symptoms.SymptomsFragment"
         android:label="SymptomsFragment" >
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_symptomsFragment_to_diagnoseResultFragment"
             app:destination="@id/diagnoseResultFragment" />
     </fragment>
@@ -138,6 +158,10 @@
         android:name="com.treplabs.ddm.ddmapp.screens.condition.ChooseConditionFragment"
         android:label="ChooseConditionFragment" >
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_chooseConditionFragment_to_diagnoseResultFragment"
             app:destination="@id/diagnoseResultFragment" />
     </fragment>

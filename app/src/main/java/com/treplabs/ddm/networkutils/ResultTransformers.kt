@@ -2,6 +2,7 @@ package com.treplabs.ddm.networkutils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentSnapshot
@@ -30,9 +31,19 @@ fun <T : AuthResult> Single<T>.toFirebaseUserResult(): Single<Result<FirebaseUse
     }
 }
 
+fun Task<Void>.toFirebaseUser(user: FirebaseUser) = Single.create<Result<FirebaseUser>> { emitter ->
+    addOnSuccessListener { emitter.onSuccess(Result.Success(user)) }
+        .addOnFailureListener { emitter.onError(it) }
+}.doOnError { e -> Timber.e(e) }
+    .onErrorReturn(defaultErrorHandler())
+    .observeOn(AndroidSchedulers.mainThread())
+
 
 fun defaultErrorHandler(): (Throwable) -> Result.Error =
-    { e -> Result.Error(GENERIC_ERROR_CODE, e.message ?: GENERIC_ERROR_MESSAGE) }
+    { e ->
+        Timber.e(e)
+        Result.Error(GENERIC_ERROR_CODE, e.message ?: GENERIC_ERROR_MESSAGE)
+    }
 
 
 fun getFirebaseUserResult(authResult: AuthResult): Result<FirebaseUser> = Result.Success(authResult.user!!)

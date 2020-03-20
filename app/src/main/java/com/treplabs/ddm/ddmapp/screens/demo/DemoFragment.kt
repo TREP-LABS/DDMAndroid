@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.treplabs.ddm.R
 import com.treplabs.ddm.base.BaseFragment
 import com.treplabs.ddm.databinding.FragmentDemoBinding
+import com.treplabs.ddm.ddmapp.datasources.repositories.ConditionsRepository
+import com.treplabs.ddm.ddmapp.screens.condition.ChooseConditionViewModel
 import com.treplabs.ddm.extensions.underline
 import kotlinx.android.synthetic.main.fragment_demo.*
+import javax.inject.Inject
 
 class DemoFragment : BaseFragment() {
 
@@ -34,8 +39,13 @@ class DemoFragment : BaseFragment() {
             R.drawable.user_icon_png
         )
     )
-    private lateinit var binding: FragmentDemoBinding
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var viewModel: DemoViewModel
+
+    private lateinit var binding: FragmentDemoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +64,10 @@ class DemoFragment : BaseFragment() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ -> }.attach()
 
         binding.signInTextView.underline()
+
+        daggerAppComponent.inject(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DemoViewModel::class.java)
+        viewModel.markDemoShown()
 
         binding.signUpButton.setOnClickListener {
             findNavController().navigate(DemoFragmentDirections.actionDemoFragmentToSignUpFragment())

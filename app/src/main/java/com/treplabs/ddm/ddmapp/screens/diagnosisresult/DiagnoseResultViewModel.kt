@@ -14,6 +14,9 @@ class DiagnoseResultViewModel @Inject constructor() : BaseViewModel() {
     val user: LiveData<FirebaseUser>
         get() = _user
 
+
+
+
     override fun addAllLiveDataToObservablesList() {
     }
 

@@ -8,12 +8,13 @@ object Constants {
 
     object FireStorePaths {
         const val symptoms = "symptoms"
-        const val conditions = "condtions"
+        const val conditions = "conditions"
     }
 
 
     object APIDataKeys{
         const val NAME = "name"
+        const val KEY = "key"
     }
 
 

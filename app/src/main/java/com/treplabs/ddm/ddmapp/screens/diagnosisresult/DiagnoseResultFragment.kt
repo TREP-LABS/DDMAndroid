@@ -35,6 +35,8 @@ class DiagnoseResultFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DiagnoseResultViewModel::class.java)
         binding.viewModel = viewModel
+        val args = DiagnoseResultFragmentArgs.fromBundle(arguments!!)
+        binding.condition = args.condition
     }
 
     override fun getViewModel() = viewModel

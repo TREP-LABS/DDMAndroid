@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
 import androidx.core.view.get
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -16,8 +17,10 @@ import com.treplabs.ddm.databinding.FragmentSymptomsBinding
 import com.treplabs.ddm.ddmapp.datasources.repositories.SymptomsRepository
 import com.treplabs.ddm.ddmapp.models.request.Symptom
 import com.treplabs.ddm.ddmapp.FilterableItemsAdapter
+import com.treplabs.ddm.ddmapp.FilterableLocalItemsAdapter
 import com.treplabs.ddm.ddmapp.datasources.repositories.ConditionsRepository
 import com.treplabs.ddm.ddmapp.models.request.Condition
+import com.treplabs.ddm.ddmapp.screens.shared.FilterableDataSharedViewModel
 import com.treplabs.ddm.ddmapp.screens.symptoms.SymptomsFragmentDirections
 import com.treplabs.ddm.ddmapp.screens.symptoms.SymptomsViewModel
 import com.treplabs.ddm.utils.EventObserver
@@ -51,13 +54,22 @@ class ChooseConditionFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ChooseConditionViewModel::class.java)
 
-        binding.symptomEditText.setAdapter(FilterableItemsAdapter(mainActivity, conditionsRepository))
+        binding.conditionEditText.setAdapter(FilterableItemsAdapter(mainActivity, conditionsRepository))
 
-        binding.symptomEditText.setOnItemClickListener { adapter, _, position, _ ->
-            binding.symptomEditText.text = null
+        binding.conditionEditText.setOnItemClickListener { adapter, _, position, _ ->
+            binding.conditionEditText.text = null
             val condition = adapter.getItemAtPosition(position) as Condition
             addChipToGroup(condition)
         }
+
+        val sharedViewModel = mainActivity.run {
+            ViewModelProviders.of(this, viewModelFactory)
+                .get(FilterableDataSharedViewModel::class.java)
+        }
+
+        sharedViewModel.conditions.observe(this, Observer {
+            binding.conditionEditText.setAdapter(FilterableLocalItemsAdapter(mainActivity, it))
+        })
 
         binding.proceedButton.setOnClickListener {
             if (binding.chipGroup.childCount < 1) {
@@ -71,11 +83,10 @@ class ChooseConditionFragment : BaseViewModelFragment() {
             }
 
             findNavController().navigate(
-                SymptomsFragmentDirections.actionSymptomsFragmentToDiagnoseResultFragment(getSelectedCondition())
+                ChooseConditionFragmentDirections.actionChooseConditionFragmentToDiagnoseResultFragment(getSelectedCondition())
             )
         }
     }
-
 
     private fun getSelectedCondition() = binding.chipGroup[0].tag as Condition
 

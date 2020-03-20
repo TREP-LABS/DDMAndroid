@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentDiagnoseBinding
+import com.treplabs.ddm.ddmapp.screens.shared.FilterableDataSharedViewModel
+import com.treplabs.ddm.utils.EventObserver
 import javax.inject.Inject
 
 class DiagnoseFragment : BaseViewModelFragment() {
@@ -38,14 +40,24 @@ class DiagnoseFragment : BaseViewModelFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DiagnoseViewModel::class.java)
         binding.viewModel = viewModel
 
-        binding.illnessYesButton.setOnClickListener {
+        val sharedViewModel = mainActivity.run {
+            ViewModelProviders.of(this, viewModelFactory)
+                .get(FilterableDataSharedViewModel::class.java)
+        }
+
+        viewModel.conditions.observe(this, EventObserver {
+            sharedViewModel.setConditions(it)
             findNavController().navigate(DiagnoseFragmentDirections.actionDiagnoseFragmentToChooseConditionFragment())
-        }
+        })
 
-        binding.illnessNoButton.setOnClickListener {
+        viewModel.symptoms.observe(this, EventObserver {
+            sharedViewModel.setSymptoms(it)
             findNavController().navigate(DiagnoseFragmentDirections.actionDiagnoseFragmentToSymptomsFragment())
-        }
+        })
 
+        binding.illnessYesButton.setOnClickListener { viewModel.getConditions() }
+
+        binding.illnessNoButton.setOnClickListener { viewModel.getSymptoms() }
     }
 
     private fun setUpToolbar() = mainActivity.run {

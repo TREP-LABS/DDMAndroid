@@ -14,8 +14,10 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:targetApi="m">
         <activity
+            android:screenOrientation="portrait"
             android:name="com.treplabs.ddm.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
