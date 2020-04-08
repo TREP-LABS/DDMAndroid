@@ -25,7 +25,7 @@ class SignUpViewModel @Inject constructor(
         get() = _signUpComplete
 
     fun signUpWithPassword(signUpRequest: SignUpRequest) {
-        _loadingStatus.value = LoadingStatus.Loading("Signing in, please wait")
+        _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait")
         firebaseAuthRepository.signUpWithPassWord(signUpRequest)
             .flatMap {
                 firebaseAuthRepository.setUserDisplayName(signUpRequest.displayName)

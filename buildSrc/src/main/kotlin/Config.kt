@@ -11,7 +11,7 @@ object Config {
     }
 
     object PublishVersion {
-        const val name = "1.0.0"
+        const val name = "1.2.0"
         const val code = 1
     }
 

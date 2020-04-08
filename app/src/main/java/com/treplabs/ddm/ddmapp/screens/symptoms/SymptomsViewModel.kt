@@ -30,7 +30,7 @@ class SymptomsViewModel @Inject constructor(
     }
 
     fun getRecommendedCondition(symptoms: Set<Symptom>) {
-        _loadingStatus.value = LoadingStatus.Loading("Signing in, please wait")
+        _loadingStatus.value = LoadingStatus.Loading("Please wait . . .")
         computeRecommendedCondition(symptoms).flatMap {
             conditionsRepository.getCondition(it.also { Timber.d ("About to get condition: $it")})
         }.subscribeBy {
