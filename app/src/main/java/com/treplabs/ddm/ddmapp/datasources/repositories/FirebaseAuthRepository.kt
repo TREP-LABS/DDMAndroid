@@ -25,10 +25,10 @@ import javax.inject.Inject
 //TODO reuse code. Abstract calls to .onErrorReturn, .observeOn to a util method
 class FirebaseAuthRepository @Inject constructor() {
 
-    fun setUserDisplayName(displayName: String): Single<Result<FirebaseUser>> {
+    fun setUserDisplayName(displayName: String): Single<Result<Void>> {
         val profileUpdates = UserProfileChangeRequest.Builder().setDisplayName(displayName).build()
         val user = FirebaseAuth.getInstance().currentUser!!
-        return user.updateProfile(profileUpdates).toFirebaseUser(user)
+        return user.updateProfile(profileUpdates).toResult()
     }
 
     fun signInWithGoogle(acct: GoogleSignInAccount): Single<Result<FirebaseUser>> {
@@ -53,10 +53,10 @@ class FirebaseAuthRepository @Inject constructor() {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    /*fun createUserInfo(user: User): Single<Result<Void>> {
+    fun createUserInfo(user: User): Single<Result<Void>> {
         return Firebase.firestore.collection(Constants.FireStorePaths.users).document(user.firebaseUid!!).set(user)
             .toSingle().map { Result.Success(it) as Result<Void> }
             .onErrorReturn(defaultErrorHandler())
             .observeOn(AndroidSchedulers.mainThread())
-    }*/
+    }
 }

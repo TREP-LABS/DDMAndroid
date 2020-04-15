@@ -10,7 +10,10 @@ import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentEditProfileBinding
 import com.treplabs.ddm.databinding.FragmentProfileBinding
+import com.treplabs.ddm.ddmapp.models.request.SignUpRequest
 import com.treplabs.ddm.ddmapp.screens.diagnosisresult.DiagnoseResultFragmentArgs
+import com.treplabs.ddm.ddmapp.validateTextLayouts
+import com.treplabs.ddm.extensions.stringContent
 
 import javax.inject.Inject
 
@@ -42,6 +45,19 @@ class EditProfileFragment : BaseViewModelFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(EditProfileViewModel::class.java)
         binding.viewModel = viewModel
         isSignUpFlow = EditProfileFragmentArgs.fromBundle(arguments!!).isSignUpFlow
+
+        binding.proceedButton.setOnClickListener {
+            if (validateTextLayouts(
+                    binding.firstNameEditText, binding.lastNameEditText, binding.phoneEditText,
+                    )
+            ) {
+                viewModel.updateUserInfo(
+                    binding.firstNameEditText.stringContent(),
+                    binding.lastNameEditText.stringContent(),
+                    binding.phoneEditText.stringContent()
+                )
+            }
+        }
     }
 
     private fun setUpToolbar() = mainActivity.run {

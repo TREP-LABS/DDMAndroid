@@ -122,7 +122,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phoneInputLayout"
                 style="@style/Widget.Design.TextInputLayout"

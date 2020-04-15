@@ -38,13 +38,17 @@ fun Task<Void>.toFirebaseUser(user: FirebaseUser) = Single.create<Result<Firebas
     .onErrorReturn(defaultErrorHandler())
     .observeOn(AndroidSchedulers.mainThread())
 
+fun Task<Void>.toResult() = Single.create<Result<Void>> { emitter ->
+    addOnSuccessListener { emitter.onSuccess(Result.Success(it)) }
+        .addOnFailureListener { emitter.onError(it) }
+}.doOnError { e -> Timber.e(e) }
+    .onErrorReturn(defaultErrorHandler())
+    .observeOn(AndroidSchedulers.mainThread())
 
-fun defaultErrorHandler(): (Throwable) -> Result.Error =
-    { e ->
+fun defaultErrorHandler(): (Throwable) -> Result.Error = { e ->
         Timber.e(e)
         Result.Error(GENERIC_ERROR_CODE, e.message ?: GENERIC_ERROR_MESSAGE)
     }
-
 
 fun getFirebaseUserResult(authResult: AuthResult): Result<FirebaseUser> = Result.Success(authResult.user!!)
 

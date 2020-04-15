@@ -40,8 +40,9 @@ data class User(
     var firstName: String?,
     var lastName: String?,
     var phoneNumber: String?,
-    var email: String?
+    var email: String?,
+    var profileImageUrl: String?
 
 ) : Parcelable {
-    constructor() : this(null, null, null, null, null)
+    constructor() : this(null, null, null, null, null, null)
 }
