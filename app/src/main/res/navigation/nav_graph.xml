@@ -68,6 +68,10 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" >
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
@@ -110,13 +114,14 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/signInFragment" />
+
         <action
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            android:id="@+id/action_signUpFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_signUpFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"

@@ -30,20 +30,14 @@ class SignUpViewModel @Inject constructor(
     fun signUpWithPassword(signUpRequest: SignUpRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait")
         firebaseAuthRepository.signUpWithPassWord(signUpRequest)
-            .flatMap {
-                Singles.zip(
-                    firebaseAuthRepository.setUserDisplayName(signUpRequest.displayName),
-                    firebaseAuthRepository.saveUserInfo(User())
-                )
-            }
             .subscribeBy {
-                if (it.first is Result.Success && it.second is Result.Success){
-                    prefsValueHelper.setLastSignedInEmail(signUpRequest.email)
-                    _signUpComplete.value = Event(true)
-                    _loadingStatus.value = LoadingStatus.Success
-                } else {
-                    _loadingStatus.value = LoadingStatus.Error("-1",
-                        "Something went wrong in the signup process, please try again")
+                when (it) {
+                    is Result.Success -> {
+                        prefsValueHelper.setLastSignedInEmail(signUpRequest.email)
+                        _signUpComplete.value = Event(true)
+                        _loadingStatus.value = LoadingStatus.Success
+                    }
+                    is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
                 }
             }.disposeBy(disposeBag)
     }

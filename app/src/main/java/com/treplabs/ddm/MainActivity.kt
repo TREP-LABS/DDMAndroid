@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         bottomNavigationView.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             if (rootNavFragments.contains(destination.id)) bottomNavigationView.show() else bottomNavigationView.hide()
         }
     }

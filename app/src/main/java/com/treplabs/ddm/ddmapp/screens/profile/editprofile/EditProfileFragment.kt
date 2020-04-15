@@ -70,28 +70,29 @@ class EditProfileFragment : BaseViewModelFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(EditProfileViewModel::class.java)
         binding.viewModel = viewModel
         isSignUpFlow = EditProfileFragmentArgs.fromBundle(arguments!!).isSignUpFlow
-        binding.avatarImageView.setOnClickListener { if (checkPermissions()) startImageCaptureProcess() }
 
+        if (isSignUpFlow) {
+            binding.skipProcessLink.underline()
+            binding.skipProcessLink.show()
+        }
+
+        binding.avatarImageView.setOnClickListener { if (checkPermissions()) startImageCaptureProcess() }
         observeImageLoadingStatus()
 
         viewModel.userInfoUpdated.observe(this, EventObserver {
             if (it) {
                 showDialogWithAction("Profile successfully updated",
                     "Profile updated, please click okay to continue",
-                    positiveAction = {
-                        if (isSignUpFlow) {
-                            findNavController().navigate(
-                                EditProfileFragmentDirections
-                                    .actionEditProfileFragmentToSignInFragment()
-                            )
-                        } else {
-                            findNavController().popBackStack()
-                        }
-                    })
+                    positiveAction = { if (isSignUpFlow) navigateToSignInPage() else findNavController().popBackStack() }
+                )
             }
         })
 
-        binding.proceedButton.setOnClickListener {
+        binding.skipProcessLink.setOnClickListener {
+            navigateToSignInPage()
+        }
+
+        binding.updateProfileButton.setOnClickListener {
 
             if (viewModel.imageUploadStatus.value == ImageUploadStatus.UPLOADING) {
                 showMessageDialog(getString(R.string.image_upload_in_progress))
@@ -118,10 +119,15 @@ class EditProfileFragment : BaseViewModelFragment() {
 
     }
 
+    fun navigateToSignInPage() {
+        findNavController().navigate(
+            EditProfileFragmentDirections.actionEditProfileFragmentToSignInFragment()
+        )
+    }
 
     private fun setUpToolbar() = mainActivity.run {
         val title = if (isSignUpFlow) "Create Profile" else "Update Profile"
-        setUpToolBar( title, false)
+        setUpToolBar(title, false)
         invalidateToolbarElevation(0)
     }
 

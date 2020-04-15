@@ -52,11 +52,7 @@ class SignUpFragment : BaseViewModelFragment() {
         binding.signInLink.underline()
 
         binding.proceedButton.setOnClickListener {
-            if (validateTextLayouts(
-                    binding.firstNameEditText, binding.lastNameEditText, binding.emailEditText, binding.phoneEditText,
-                    binding.passwordEditText, binding.confirmPasswordEditText
-                )
-            ) {
+            if (validateTextLayouts(binding.emailEditText, binding.passwordEditText, binding.confirmPasswordEditText)) {
                 val firstPassword = binding.passwordEditText.stringContent()
                 val secondPassword = binding.confirmPasswordEditText.stringContent()
 
@@ -71,11 +67,7 @@ class SignUpFragment : BaseViewModelFragment() {
                 }
 
                 viewModel.signUpWithPassword(
-                    SignUpRequest(
-                        binding.emailEditText.stringContent(),
-                        binding.passwordEditText.stringContent(),
-                        "${binding.firstNameEditText.stringContent()} ${binding.lastNameEditText.stringContent()}"
-                    )
+                    SignUpRequest(binding.emailEditText.stringContent(), binding.passwordEditText.stringContent())
                 )
             }
         }
@@ -86,11 +78,7 @@ class SignUpFragment : BaseViewModelFragment() {
 
         viewModel.signUpComplete.observe(this, EventObserver {
             if (it) {
-                showDialogWithAction(title = "Sign up complete",
-                    body = "SignUp complete, click okay to sign in with your newly created account",
-                    positiveAction = {
-                        findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment())
-                    })
+                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToEditProfileFragment(true))
             }
         })
     }

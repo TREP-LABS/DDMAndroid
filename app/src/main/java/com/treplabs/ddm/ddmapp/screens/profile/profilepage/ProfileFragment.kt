@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentProfileBinding
@@ -37,6 +38,10 @@ class ProfileFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
         binding.viewModel = viewModel
+
+        binding.updateProfileButton.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(false))
+        }
     }
 
     private fun setUpToolbar() = mainActivity.run {
