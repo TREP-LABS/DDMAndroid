@@ -45,4 +45,6 @@ data class User(
 
 ) : Parcelable {
     constructor() : this(null, null, null, null, null, null)
+
+    fun fullName() = "$firstName $lastName"
 }

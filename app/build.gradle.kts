@@ -162,6 +162,7 @@ dependencies {
     implementation(Config.Libs.Firebase.auth)
     implementation(Config.Libs.Firebase.googlePlayServices)
     implementation(Config.Libs.Firebase.fireStore)
+    implementation(Config.Libs.Firebase.cloudStorage)
 
     //Rx
     implementation(Config.Libs.Reactive.rxJava)

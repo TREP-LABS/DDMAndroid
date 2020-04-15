@@ -83,7 +83,7 @@ object Config {
             const val auth = "com.google.firebase:firebase-auth:19.2.0"
             const val googlePlayServices = "com.google.android.gms:play-services-auth:17.0.0"
             const val fireStore =  "com.google.firebase:firebase-firestore-ktx:21.4.1"
-
+            const val cloudStorage = "com.google.firebase:firebase-storage-ktx:19.1.1"
         }
 
         object Reactive {

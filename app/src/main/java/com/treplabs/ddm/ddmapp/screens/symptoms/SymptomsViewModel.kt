@@ -25,14 +25,13 @@ class SymptomsViewModel @Inject constructor(
     val recommendedCondition: LiveData<Event<Condition>>
         get() = _recommendedCondition
 
-
     override fun addAllLiveDataToObservablesList() {
     }
 
     fun getRecommendedCondition(symptoms: Set<Symptom>) {
         _loadingStatus.value = LoadingStatus.Loading("Please wait . . .")
         computeRecommendedCondition(symptoms).flatMap {
-            conditionsRepository.getCondition(it.also { Timber.d ("About to get condition: $it")})
+            conditionsRepository.getCondition(it)
         }.subscribeBy {
             when (it) {
                 is Result.Success -> {
@@ -46,7 +45,6 @@ class SymptomsViewModel @Inject constructor(
 
     private fun computeRecommendedCondition(symptoms: Set<Symptom>): Single<String> {
         return Single.fromCallable {
-
             val map = mutableMapOf<String, Int>()
             symptoms.forEach { symptom ->
                 symptom.conditionKeys!!.forEach { conditionKey ->

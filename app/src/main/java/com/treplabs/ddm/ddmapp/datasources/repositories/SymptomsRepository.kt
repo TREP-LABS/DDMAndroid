@@ -22,7 +22,7 @@ class SymptomsRepository @Inject constructor() : FilterableDataSource<Symptom> {
 
     private fun getSymptoms(queryText: String): List<Symptom> {
         return try {
-            val task = Firebase.firestore.collection(FireStorePaths.symptoms)
+            val task = Firebase.firestore.collection(FireStorePaths.SYMPTOMS)
                 .whereGreaterThanOrEqualTo(APIDataKeys.KEY, queryText)
                .whereLessThanOrEqualTo(APIDataKeys.KEY, queryText + '\uf8ff').get()
             Tasks.await(task).toObjects(Symptom::class.java).also {
@@ -36,7 +36,7 @@ class SymptomsRepository @Inject constructor() : FilterableDataSource<Symptom> {
     }
 
     fun getAllSymptoms(): Single<Result<List<Symptom>>> {
-        return Firebase.firestore.collection(FireStorePaths.symptoms).get()
+        return Firebase.firestore.collection(FireStorePaths.SYMPTOMS).get()
             .toSingle().map {
                 Result.Success(it.toObjects(Symptom::class.java)) as Result<List<Symptom>>
             }

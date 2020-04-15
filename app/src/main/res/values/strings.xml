@@ -10,4 +10,7 @@
     <string name="demo_tab_description_two">Know the cause of your distress in just 3 minutes</string>
     <string name="demo_tab_description_three">Know how accurate the diagnose result is and alternative possible case</string>
 
+    <string name="image_upload_in_progress">Image upload in progress, please wait</string>
+    <string name="upload_picture_to_proceed">Please upload your profile picture to proceed</string>
+
 </resources>

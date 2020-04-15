@@ -19,7 +19,7 @@ class ConditionsRepository @Inject constructor() : FilterableDataSource<Conditio
 
     private fun getConditions(queryText: String): List<Condition> {
         return try {
-            val task = Firebase.firestore.collection(Constants.FireStorePaths.conditions)
+            val task = Firebase.firestore.collection(Constants.FireStorePaths.CONDITIONS)
                 .whereGreaterThanOrEqualTo(Constants.APIDataKeys.KEY, queryText)
                 .whereLessThanOrEqualTo(Constants.APIDataKeys.KEY, queryText + '\uf8ff').get()
             Tasks.await(task).toObjects(Condition::class.java).also {
@@ -33,7 +33,7 @@ class ConditionsRepository @Inject constructor() : FilterableDataSource<Conditio
     }
 
      fun getAllConditions(): Single<Result<List<Condition>>> {
-        return Firebase.firestore.collection(Constants.FireStorePaths.conditions).get()
+        return Firebase.firestore.collection(Constants.FireStorePaths.CONDITIONS).get()
             .toSingle().map {
                 Result.Success(it.toObjects(Condition::class.java)) as Result<List<Condition>>
             }
@@ -45,7 +45,7 @@ class ConditionsRepository @Inject constructor() : FilterableDataSource<Conditio
     override fun getFilteredItems(queryText: String): List<Condition> = getConditions(queryText)
 
     fun getCondition(key: String): Single<Result<Condition>> {
-        return Firebase.firestore.collection(Constants.FireStorePaths.conditions).document(key).get()
+        return Firebase.firestore.collection(Constants.FireStorePaths.CONDITIONS).document(key).get()
             .toSingle()
             .map {
                 Timber.d("Inside map  docment sanpshot ${it}")

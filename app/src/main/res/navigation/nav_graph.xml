@@ -66,7 +66,11 @@
         android:id="@+id/profileFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.profile.profilepage.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.demo.WelcomeFragment"
@@ -100,12 +104,19 @@
         <action
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
-            android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/signInFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            android:id="@+id/action_signUpFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"
@@ -169,8 +180,18 @@
         android:id="@+id/editProfileFragment"
         android:name="com.treplabs.ddm.ddmapp.screens.profile.editprofile.EditProfileFragment"
         android:label="EditProfileFragment" >
+
         <argument
             android:name="isSignUpFlow"
             app:argType="boolean" />
+        <action
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            android:id="@+id/action_editProfileFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
 </navigation>

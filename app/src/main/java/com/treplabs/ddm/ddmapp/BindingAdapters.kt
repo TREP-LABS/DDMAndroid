@@ -13,8 +13,8 @@ import com.treplabs.ddm.extensions.lastName
 
 
 @BindingAdapter("imageUrl")
-fun bindUUserImage(imageView: ImageView, uri: Uri?) {
-    imageView.load(uri.toString()) {
+fun bindUUserImage(imageView: ImageView, url: String?) {
+    imageView.load(url) {
         placeholder(R.drawable.user_profile_avatar)
         transformations(CircleCropTransformation())
         crossfade(true)
