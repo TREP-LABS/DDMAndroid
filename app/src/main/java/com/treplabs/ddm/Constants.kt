@@ -9,6 +9,7 @@ object Constants {
     object FireStorePaths {
         const val symptoms = "symptoms"
         const val conditions = "conditions"
+        const val users = "users"
     }
 
 

@@ -7,10 +7,13 @@ import com.treplabs.ddm.ddmapp.PrefsValueHelper
 import com.treplabs.ddm.ddmapp.models.request.SignInRequest
 import com.treplabs.ddm.ddmapp.datasources.repositories.FirebaseAuthRepository
 import com.treplabs.ddm.ddmapp.models.request.SignUpRequest
+import com.treplabs.ddm.ddmapp.models.request.User
 import com.treplabs.ddm.networkutils.LoadingStatus
 import com.treplabs.ddm.networkutils.Result
 import com.treplabs.ddm.networkutils.disposeBy
 import com.treplabs.ddm.utils.Event
+import io.reactivex.rxkotlin.Observables
+import io.reactivex.rxkotlin.Singles
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
@@ -28,16 +31,19 @@ class SignUpViewModel @Inject constructor(
         _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait")
         firebaseAuthRepository.signUpWithPassWord(signUpRequest)
             .flatMap {
-                firebaseAuthRepository.setUserDisplayName(signUpRequest.displayName)
+                Singles.zip(
+                    firebaseAuthRepository.setUserDisplayName(signUpRequest.displayName),
+                    firebaseAuthRepository.saveUserInfo(User())
+                )
             }
             .subscribeBy {
-                when (it) {
-                    is Result.Success -> {
-                        prefsValueHelper.setLastSignedInEmail(signUpRequest.email)
-                        _signUpComplete.value = Event(true)
-                        _loadingStatus.value = LoadingStatus.Success
-                    }
-                    is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
+                if (it.first is Result.Success && it.second is Result.Success){
+                    prefsValueHelper.setLastSignedInEmail(signUpRequest.email)
+                    _signUpComplete.value = Event(true)
+                    _loadingStatus.value = LoadingStatus.Success
+                } else {
+                    _loadingStatus.value = LoadingStatus.Error("-1",
+                        "Something went wrong in the signup process, please try again")
                 }
             }.disposeBy(disposeBag)
     }

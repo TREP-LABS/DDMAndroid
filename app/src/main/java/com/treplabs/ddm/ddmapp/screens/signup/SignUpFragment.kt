@@ -14,6 +14,7 @@ import com.treplabs.ddm.databinding.FragmentSigninBinding
 import com.treplabs.ddm.databinding.FragmentSignupBinding
 import com.treplabs.ddm.ddmapp.models.request.SignInRequest
 import com.treplabs.ddm.ddmapp.models.request.SignUpRequest
+import com.treplabs.ddm.ddmapp.models.request.User
 import com.treplabs.ddm.ddmapp.screens.signin.SignInViewModel
 import com.treplabs.ddm.ddmapp.validateTextLayouts
 import com.treplabs.ddm.extensions.stringContent
@@ -52,7 +53,7 @@ class SignUpFragment : BaseViewModelFragment() {
 
         binding.proceedButton.setOnClickListener {
             if (validateTextLayouts(
-                    binding.firstNameEditText, binding.lastNameEditText, binding.emailEditText,
+                    binding.firstNameEditText, binding.lastNameEditText, binding.emailEditText, binding.phoneEditText,
                     binding.passwordEditText, binding.confirmPasswordEditText
                 )
             ) {
@@ -63,10 +64,12 @@ class SignUpFragment : BaseViewModelFragment() {
                     showSnackBar("Password must be greater than or equal to 8 characters")
                     return@setOnClickListener
                 }
+
                 if (firstPassword != secondPassword) {
                     showSnackBar("Passwords do not match")
                     return@setOnClickListener
                 }
+
                 viewModel.signUpWithPassword(
                     SignUpRequest(
                         binding.emailEditText.stringContent(),

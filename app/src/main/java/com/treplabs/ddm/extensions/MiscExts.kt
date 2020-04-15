@@ -1,5 +1,6 @@
 package com.treplabs.ddm.extensions
 
+import com.google.firebase.auth.FirebaseUser
 import java.lang.StringBuilder
 
 
@@ -11,3 +12,11 @@ fun String.snakeCase(): String {
     return sb.toString()
 }
 
+
+fun FirebaseUser.firstName(): String? {
+    return displayName?.split(" ")?.firstOrNull()
+}
+
+fun FirebaseUser.lastName(): String? {
+    return displayName?.split(" ")?.lastOrNull()
+}

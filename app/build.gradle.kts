@@ -32,6 +32,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     androidExtensions {
         isExperimental = true
     }
@@ -164,6 +168,7 @@ dependencies {
     implementation(Config.Libs.Reactive.rxAndroid)
     implementation(Config.Libs.Reactive.rxKotlin)
     implementation(Config.Libs.Reactive.rxRetrofitAdapter)
+    implementation(Config.Libs.Misc.coil)
 }
 
 apply(from = "../spotless.gradle")

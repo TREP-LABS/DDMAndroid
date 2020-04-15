@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.treplabs.ddm.ddmapp.screens.profile.editprofile.EditProfileViewModel" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,17 +19,65 @@
             android:layout_height="wrap_content"
             android:background="?colorPrimary">
 
-            <TextView
-                android:id="@+id/textView"
-                style="@style/AppTheme.TextAppearance.PageHeader.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:text="Sign Up"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/user_avatar_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="120dp"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/avatar_image_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/user_profile_avatar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    app:imageUrl="@{viewModel.user.photoUrl}"
+                    android:id="@+id/image_upload_status_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:alpha="0.5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/image_upload_done_status" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/camera_icon" />
+
+                <ProgressBar
+                    android:id="@+id/indeterminateImageUploadProgressBar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -31,14 +86,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
                 android:hint="First Name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/user_avatar_container">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    app:firstName="@{viewModel.user}"
                     android:id="@+id/firstNameEditText"
                     style="@style/AppTheme.TextInputLayouts"
                     android:inputType="textEmailAddress" />
@@ -59,28 +115,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/firstNameInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    app:lastName="@{viewModel.user}"
                     android:id="@+id/last_name_edit_text"
-                    style="@style/AppTheme.TextInputLayouts"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailInputLayout"
-                style="@style/Widget.Design.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="30dp"
-                android:hint="Email"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lastNameInputLayout">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailEditText"
                     style="@style/AppTheme.TextInputLayouts"
                     android:inputType="textEmailAddress" />
 
@@ -95,95 +131,58 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="30dp"
-                android:hint="Phone"
+                android:hint="Phone Number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/lastNameInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneEditText"
+                    android:text="@{viewModel.user.phoneNumber}"
                     style="@style/AppTheme.TextInputLayouts"
                     android:inputType="phone" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordInputLayout"
+                android:id="@+id/emailInputLayout"
                 style="@style/Widget.Design.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="30dp"
-                android:hint="Password"
+                android:hint="Email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneInputLayout"
-                app:passwordToggleEnabled="true">
+                app:layout_constraintTop_toBottomOf="@+id/phoneInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password_edit_text"
+                    android:id="@+id/emailEditText"
                     style="@style/AppTheme.TextInputLayouts"
-                    android:inputType="textPassword" />
+                    android:enabled="false"
+                    android:text="@{viewModel.user.email}"
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/confirmPasswordInputLayout"
-                style="@style/Widget.Design.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="30dp"
-                android:hint="Confirm password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout"
-                app:passwordToggleEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/confirmPassword_edit_text"
-                    style="@style/AppTheme.TextInputLayouts"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/proceed_button"
                 style="@style/AppTheme.HorizontalButtonAppearance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:text="Proceed"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/confirmPasswordInputLayout" />
-
-            <TextView
-                android:id="@+id/sign_in_link"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="Sign in, if you already have an account"
-                android:textColor="@color/textColorPrimary"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="40dp"
+                android:text="Update Profile"
+                app:cornerRadius="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/proceed_button" />
+                app:layout_constraintTop_toBottomOf="@id/emailInputLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </ScrollView>
-
-
 </layout>

@@ -64,7 +64,7 @@
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.treplabs.ddm.ddmapp.screens.profile.ProfileFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.profile.profilepage.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
     <fragment
@@ -164,5 +164,13 @@
             app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_chooseConditionFragment_to_diagnoseResultFragment"
             app:destination="@id/diagnoseResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.treplabs.ddm.ddmapp.screens.profile.editprofile.EditProfileFragment"
+        android:label="EditProfileFragment" >
+        <argument
+            android:name="isSignUpFlow"
+            app:argType="boolean" />
     </fragment>
 </navigation>

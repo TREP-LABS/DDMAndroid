@@ -11,7 +11,8 @@ import com.treplabs.ddm.ddmapp.screens.signin.SignInViewModel
 import com.treplabs.ddm.ddmapp.screens.otp.OTPViewModel
 import com.treplabs.ddm.ddmapp.screens.otpdialog.OTPDialogViewModel
 import com.treplabs.ddm.ddmapp.screens.password.CreatePasswordViewModel
-import com.treplabs.ddm.ddmapp.screens.profile.ProfileViewModel
+import com.treplabs.ddm.ddmapp.screens.profile.editprofile.EditProfileViewModel
+import com.treplabs.ddm.ddmapp.screens.profile.profilepage.ProfileViewModel
 import com.treplabs.ddm.ddmapp.screens.settings.SettingsViewModel
 import com.treplabs.ddm.ddmapp.screens.shared.FilterableDataSharedViewModel
 import com.treplabs.ddm.ddmapp.screens.signup.SignUpViewModel
@@ -96,4 +97,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(FilterableDataSharedViewModel::class)
     abstract fun bindFilterableDataSharedViewModel(viewModel: FilterableDataSharedViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditProfileViewModel::class)
+    abstract fun bindEditProfileViewModel(viewModel: EditProfileViewModel): ViewModel
 }

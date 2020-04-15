@@ -1,4 +1,4 @@
-package com.treplabs.ddm.ddmapp.screens.profile
+package com.treplabs.ddm.ddmapp.screens.profile.profilepage
 
 import com.treplabs.ddm.base.BaseViewModel
 import javax.inject.Inject
