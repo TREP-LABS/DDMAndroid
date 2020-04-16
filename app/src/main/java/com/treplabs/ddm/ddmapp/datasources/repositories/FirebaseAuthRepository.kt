@@ -12,16 +12,14 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.treplabs.ddm.Constants
 import com.treplabs.ddm.ddmapp.PrefsValueHelper
-import com.treplabs.ddm.ddmapp.models.request.SignInRequest
-import com.treplabs.ddm.ddmapp.models.request.SignUpRequest
-import com.treplabs.ddm.ddmapp.models.request.Symptom
-import com.treplabs.ddm.ddmapp.models.request.User
+import com.treplabs.ddm.ddmapp.models.request.*
 import com.treplabs.ddm.extensions.firstName
 import com.treplabs.ddm.extensions.lastName
 import com.treplabs.ddm.networkutils.*
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import timber.log.Timber
 import java.io.File
 import javax.inject.Inject
 
@@ -53,24 +51,34 @@ class FirebaseAuthRepository @Inject constructor(private val prefsValueHelper: P
             .toSingle().toFirebaseUserResult()
     }
 
-    fun saveUserInfo(user: User): Single<Result<Void>> {
+    fun saveUserInfo(user: User): Completable{
         return Firebase.firestore.collection(Constants.FireStorePaths.USERS).document(user.firebaseUid!!).set(user)
-            .toSingle().map { Result.Success(it) as Result<Void> }
+            .toCompletable()
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getUser(userId: String): Single<Result<User>> {
+        return Firebase.firestore.collection(Constants.FireStorePaths.USERS).document(userId).get()
+            .toSingle()
+            .map {
+                Result.Success(it.toObject(User::class.java)!!) as Result<User>
+            }
             .onErrorReturn(defaultErrorHandler())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun uploadFile(file: File, imageRefs: StorageReference) : Single<Result<Uri>> {
+       val  profilePicRefs = imageRefs.child(Constants.CloudStoragePaths.PROFILE_PICTURE).child(file.name)
         val fileUri = Uri.fromFile(File(file.absolutePath))
-        return imageRefs.putFile(fileUri).continueWithTask { task ->
+        return profilePicRefs.putFile(fileUri).continueWithTask { task ->
             if (!task.isSuccessful) { task.exception?.let { throw it } }
-            imageRefs.downloadUrl
+            profilePicRefs.downloadUrl
         }.toSingle().map { Result.Success(it) as Result<Uri> }
             .onErrorReturn(defaultErrorHandler())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    private fun getUser(): User {
+    fun getUser(): User {
         var user = prefsValueHelper.getUser()
         if (user == null) {
             val firebaseUser = FirebaseAuth.getInstance().currentUser!!
@@ -80,9 +88,5 @@ class FirebaseAuthRepository @Inject constructor(private val prefsValueHelper: P
             )
         }
         return user
-    }
-
-    fun UploadTask.toSingle() {
-
     }
 }

@@ -6,10 +6,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.ddmapp.datasources.repositories.ConditionsRepository
+import com.treplabs.ddm.ddmapp.datasources.repositories.FirebaseAuthRepository
 import com.treplabs.ddm.ddmapp.datasources.repositories.SymptomsRepository
 import com.treplabs.ddm.ddmapp.models.request.Condition
 import com.treplabs.ddm.ddmapp.models.request.SignInRequest
 import com.treplabs.ddm.ddmapp.models.request.Symptom
+import com.treplabs.ddm.ddmapp.models.request.User
 import com.treplabs.ddm.networkutils.LoadingStatus
 import com.treplabs.ddm.networkutils.Result
 import com.treplabs.ddm.networkutils.disposeBy
@@ -20,12 +22,13 @@ import javax.inject.Inject
 
 class DiagnoseViewModel @Inject constructor(
     private val conditionsRepository: ConditionsRepository,
-    private val symptomsRepository: SymptomsRepository
+    private val symptomsRepository: SymptomsRepository,
+    private val authRepository: FirebaseAuthRepository
 ) : BaseViewModel() {
 
-    private val _user = MutableLiveData<FirebaseUser>(FirebaseAuth.getInstance().currentUser)
+    private val _user = MutableLiveData<User>(authRepository.getUser())
 
-    val user: LiveData<FirebaseUser>
+    val user: LiveData<User>
         get() = _user
 
     private val _symptoms = MutableLiveData<Event<List<Symptom>>>()

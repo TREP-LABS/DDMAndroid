@@ -14,7 +14,10 @@ import com.treplabs.ddm.networkutils.LoadingStatus
 import com.treplabs.ddm.networkutils.Result
 import com.treplabs.ddm.networkutils.disposeBy
 import com.treplabs.ddm.utils.Event
+import io.reactivex.Single
+import io.reactivex.rxkotlin.Singles
 import io.reactivex.rxkotlin.subscribeBy
+import timber.log.Timber
 import javax.inject.Inject
 
 enum class NavigationFlow { NEW_USER, RETURNING_USER }
@@ -24,13 +27,7 @@ class SignInViewModel @Inject constructor(
     private val prefsValueHelper: PrefsValueHelper
 ) : BaseViewModel() {
 
-    private val _user = MutableLiveData<FirebaseUser>(FirebaseAuth.getInstance().currentUser)
-
-    val user: LiveData<FirebaseUser>
-        get() = _user
-
     private val _lastSignedInEmail = MutableLiveData<String>(prefsValueHelper.getLastSignedInEmail())
-
     val lastSignedInEmail: LiveData<String>
         get() = _lastSignedInEmail
 
@@ -56,25 +53,30 @@ class SignInViewModel @Inject constructor(
                 when (it) {
                     is Result.Success -> {
                         prefsValueHelper.setLastSignedInEmail(signInRequest.email)
-                        _signInComplete.value = Event(true)
-                        _loadingStatus.value = LoadingStatus.Success
+                        getUser(it.data.uid)
                     }
                     is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
                 }
             }.disposeBy(disposeBag)
     }
 
+    fun getUser(userId: String) {
+        firebaseAuthRepository.getUser(userId).subscribeBy {
+            if (it is Result.Success){
+                prefsValueHelper.saveUser(it.data)
+            }
+            _loadingStatus.value = LoadingStatus.Success
+            _signInComplete.value = Event(true)
+        }.disposeBy(disposeBag)
+    }
+
     fun signInWithGoogle(acct: GoogleSignInAccount) {
         _loadingStatus.value = LoadingStatus.Loading("Signing in, please wait")
-        firebaseAuthRepository.signInWithGoogle(acct)
-            .subscribeBy {
-                when (it) {
-                    is Result.Success -> {
-                        _signInComplete.value = Event(true)
-                        _loadingStatus.value = LoadingStatus.Success
-                    }
-                    is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
-                }
+        firebaseAuthRepository.signInWithGoogle(acct).subscribeBy {
+            when (it) {
+                is Result.Success -> getUser(it.data.uid)
+                is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
+            }
             }.disposeBy(disposeBag)
     }
 

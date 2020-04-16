@@ -65,11 +65,11 @@ class EditProfileFragment : BaseViewModelFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        isSignUpFlow = EditProfileFragmentArgs.fromBundle(arguments!!).isSignUpFlow
         setUpToolbar()
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(EditProfileViewModel::class.java)
         binding.viewModel = viewModel
-        isSignUpFlow = EditProfileFragmentArgs.fromBundle(arguments!!).isSignUpFlow
 
         if (isSignUpFlow) {
             binding.skipProcessLink.underline()
@@ -132,7 +132,6 @@ class EditProfileFragment : BaseViewModelFragment() {
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
-
 
     // Image capture and upload boilerplate
 

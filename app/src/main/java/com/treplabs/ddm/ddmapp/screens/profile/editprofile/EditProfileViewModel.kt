@@ -10,6 +10,7 @@ import com.treplabs.ddm.ddmapp.datasources.repositories.FirebaseAuthRepository
 import com.treplabs.ddm.ddmapp.models.request.User
 import com.treplabs.ddm.ddmapp.screens.profile.editprofile.ImageUploadStatus.*
 import com.treplabs.ddm.extensions.resize
+import com.treplabs.ddm.networkutils.GENERIC_ERROR_MESSAGE
 import com.treplabs.ddm.networkutils.LoadingStatus
 import com.treplabs.ddm.networkutils.Result
 import com.treplabs.ddm.networkutils.disposeBy
@@ -23,7 +24,7 @@ import javax.inject.Inject
 enum class ImageUploadStatus { NOT_UPLOADED, UPLOADING, SUCCESS, FAILED }
 
 class EditProfileViewModel @Inject constructor(
-    prefsValueHelper: PrefsValueHelper,
+   private  val prefsValueHelper: PrefsValueHelper,
     private val authRepository: FirebaseAuthRepository
 ) : BaseViewModel() {
 
@@ -31,7 +32,7 @@ class EditProfileViewModel @Inject constructor(
     val imageUploadStatus: LiveData<ImageUploadStatus>
         get() = _imageUploadStatus
 
-    private val _user = MutableLiveData<User>(prefsValueHelper.getUser())
+    private val _user = MutableLiveData<User>(authRepository.getUser())
 
     val user: LiveData<User>
         get() = _user
@@ -49,15 +50,13 @@ class EditProfileViewModel @Inject constructor(
         _loadingStatus.value = LoadingStatus.Loading("Please wait . . .")
         val user = _user.value!!
         val updatedUser = User(user.firebaseUid, firstName, lastName, phoneNumber, user.email, user.profileImageUrl)
-        authRepository.saveUserInfo(updatedUser).subscribeBy {
-            when (it) {
-                is Result.Success -> {
-                    _userInfoUpdated.value = Event(true)
-                    _loadingStatus.value = LoadingStatus.Success
-                }
-                is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
-            }
-        }.disposeBy(disposeBag)
+        authRepository.saveUserInfo(updatedUser).subscribeBy(onComplete = {
+             prefsValueHelper.saveUser(user)
+            _userInfoUpdated.value = Event(true)
+            _loadingStatus.value = LoadingStatus.Success
+        }, onError = {
+            _loadingStatus.value = LoadingStatus.Error("-1", it.message ?: GENERIC_ERROR_MESSAGE)
+        }).disposeBy(disposeBag)
     }
 
     fun uploadProfilePicture(file: File) {

@@ -1,6 +1,5 @@
 package com.treplabs.ddm.ddmapp
 
-import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -10,14 +9,18 @@ import com.google.firebase.auth.FirebaseUser
 import com.treplabs.ddm.R
 import com.treplabs.ddm.extensions.firstName
 import com.treplabs.ddm.extensions.lastName
+import timber.log.Timber
 
 
 @BindingAdapter("imageUrl")
-fun bindUUserImage(imageView: ImageView, url: String?) {
-    imageView.load(url) {
-        placeholder(R.drawable.user_profile_avatar)
-        transformations(CircleCropTransformation())
-        crossfade(true)
+fun bindUserImage(imageView: ImageView, url: String?) {
+    Timber.d("Image url is $url")
+    url?.let {
+        imageView.load(it) {
+            placeholder(R.drawable.user_profile_avatar)
+            transformations(CircleCropTransformation())
+            crossfade(true)
+        }
     }
 }
 
