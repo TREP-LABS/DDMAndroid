@@ -17,6 +17,7 @@ import com.treplabs.ddm.networkutils.Result
 import com.treplabs.ddm.networkutils.disposeBy
 import com.treplabs.ddm.utils.Event
 import io.reactivex.rxkotlin.subscribeBy
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -26,7 +27,7 @@ class DiagnoseViewModel @Inject constructor(
     private val authRepository: FirebaseAuthRepository
 ) : BaseViewModel() {
 
-    private val _user = MutableLiveData<User>(authRepository.getUser())
+    private val _user = MutableLiveData<User>()
 
     val user: LiveData<User>
         get() = _user
@@ -39,6 +40,9 @@ class DiagnoseViewModel @Inject constructor(
     val conditions: LiveData<Event<List<Condition>>>
         get() = _conditions
 
+    fun reloadUser() {
+        _user.value = authRepository.getUser()
+    }
 
     fun getConditions() {
         _loadingStatus.value = LoadingStatus.Loading("Please wait...")

@@ -15,21 +15,15 @@ import timber.log.Timber
 @BindingAdapter("imageUrl")
 fun bindUserImage(imageView: ImageView, url: String?) {
     Timber.d("Image url is $url")
-    url?.let {
-        imageView.load(it) {
-            placeholder(R.drawable.user_profile_avatar)
-            transformations(CircleCropTransformation())
-            crossfade(true)
-        }
+    imageView.load(url) {
+        placeholder(R.drawable.user_profile_avatar)
+        transformations(CircleCropTransformation())
+        crossfade(true)
     }
 }
 
 @BindingAdapter("firstName")
-fun bindUserFirstName(textView: TextView, user: FirebaseUser?) {
-    textView.text = user?.firstName()
-}
+fun bindUserFirstName(textView: TextView, user: FirebaseUser?) { textView.text = user?.firstName() }
 
 @BindingAdapter("lastName")
-fun bindUserLastName(textView: TextView, user: FirebaseUser?) {
-    textView.text = user?.lastName()
-}
+fun bindUserLastName(textView: TextView, user: FirebaseUser?) { textView.text = user?.lastName() }

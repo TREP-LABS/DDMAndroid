@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.treplabs.ddm.base.BaseViewModel
 import com.treplabs.ddm.base.BaseViewModelFragment
 import com.treplabs.ddm.databinding.FragmentProfileBinding
+import timber.log.Timber
 
 import javax.inject.Inject
 
@@ -38,10 +39,18 @@ class ProfileFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProfileViewModel::class.java)
         binding.viewModel = viewModel
-
+        viewModel.reloadUser()
         binding.updateProfileButton.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(false))
         }
+
+        Timber.d("onViewCreated called")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.d("onStart called")
+
     }
 
     private fun setUpToolbar() = mainActivity.run {

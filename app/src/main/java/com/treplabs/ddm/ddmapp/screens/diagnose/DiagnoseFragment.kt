@@ -39,7 +39,7 @@ class DiagnoseFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DiagnoseViewModel::class.java)
         binding.viewModel = viewModel
-
+        viewModel.reloadUser()
         val sharedViewModel = mainActivity.run {
             ViewModelProviders.of(this, viewModelFactory)
                 .get(FilterableDataSharedViewModel::class.java)

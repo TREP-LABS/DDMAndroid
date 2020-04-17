@@ -51,7 +51,7 @@ class EditProfileViewModel @Inject constructor(
         val user = _user.value!!
         val updatedUser = User(user.firebaseUid, firstName, lastName, phoneNumber, user.email, user.profileImageUrl)
         authRepository.saveUserInfo(updatedUser).subscribeBy(onComplete = {
-             prefsValueHelper.saveUser(user)
+             prefsValueHelper.saveUser(updatedUser)
             _userInfoUpdated.value = Event(true)
             _loadingStatus.value = LoadingStatus.Success
         }, onError = {

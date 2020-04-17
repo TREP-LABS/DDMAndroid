@@ -68,6 +68,8 @@ class EditProfileFragment : BaseViewModelFragment() {
         isSignUpFlow = EditProfileFragmentArgs.fromBundle(arguments!!).isSignUpFlow
         setUpToolbar()
         daggerAppComponent.inject(this)
+        binding.avatarImageView.setImageResource(R.drawable.user_profile_avatar)
+
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(EditProfileViewModel::class.java)
         binding.viewModel = viewModel
 
@@ -99,10 +101,10 @@ class EditProfileFragment : BaseViewModelFragment() {
                 return@setOnClickListener
             }
 
-            if (viewModel.imageUploadStatus.value != ImageUploadStatus.SUCCESS) {
+            /*if (viewModel.imageUploadStatus.value != ImageUploadStatus.SUCCESS) {
                 showSnackBar(getString(R.string.upload_picture_to_proceed))
                 return@setOnClickListener
-            }
+            }*/
 
             if (!(validateTextLayouts(binding.firstNameEditText, binding.lastNameEditText, binding.phoneEditText))
             ) {
