@@ -51,7 +51,7 @@ class FirebaseAuthRepository @Inject constructor(private val prefsValueHelper: P
             .toSingle().toFirebaseUserResult()
     }
 
-    fun saveUserInfo(user: User): Completable{
+    fun saveUserInfo(user: User): Completable {
         return Firebase.firestore.collection(Constants.FireStorePaths.USERS).document(user.firebaseUid!!).set(user)
             .toCompletable()
             .observeOn(AndroidSchedulers.mainThread())
@@ -67,11 +67,13 @@ class FirebaseAuthRepository @Inject constructor(private val prefsValueHelper: P
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun uploadFile(file: File, imageRefs: StorageReference) : Single<Result<Uri>> {
-       val  profilePicRefs = imageRefs.child(Constants.CloudStoragePaths.PROFILE_PICTURE).child(file.name)
+    fun uploadFile(file: File, imageRefs: StorageReference): Single<Result<Uri>> {
+        val profilePicRefs = imageRefs.child(Constants.CloudStoragePaths.PROFILE_PICTURE).child(file.name)
         val fileUri = Uri.fromFile(File(file.absolutePath))
         return profilePicRefs.putFile(fileUri).continueWithTask { task ->
-            if (!task.isSuccessful) { task.exception?.let { throw it } }
+            if (!task.isSuccessful) {
+                task.exception?.let { throw it }
+            }
             profilePicRefs.downloadUrl
         }.toSingle().map { Result.Success(it) as Result<Uri> }
             .onErrorReturn(defaultErrorHandler())
